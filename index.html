@@ -62,11 +62,9 @@ footer{padding:60px 0 80px;color:var(--m);font-size:13px;border-top:1px solid va
 /* viewer */
 #viewer{position:fixed;inset:0;z-index:100;background:#0d0c0b;display:none;flex-direction:column}
 #viewer.on{display:flex}
-#vbar{height:48px;display:flex;align-items:center;gap:14px;padding:0 14px;color:#fff;font-size:13.5px;border-bottom:1px solid #2a2724}
-#vbar .t{font-weight:600}#vbar .h{color:#9b948c}
-#vbar .sp{flex:1}
-#vbar button,#vbar a{font:500 13px "Inter Tight";background:#2a2724;color:#fff;border:0;border-radius:8px;padding:7px 12px;cursor:pointer;text-decoration:none}
-#frame{flex:1;border:0;width:100%;background:#000}
+#frame{position:absolute;inset:0;border:0;width:100%;height:100%;background:#000}
+#vx{position:absolute;top:16px;right:16px;z-index:2;width:40px;height:40px;border-radius:50%;border:0;background:rgba(20,18,16,.55);color:#fff;font-size:18px;cursor:pointer;backdrop-filter:blur(10px);opacity:0;transition:opacity .4s}
+#viewer.show #vx{opacity:1}#vx:hover{background:rgba(20,18,16,.85)}
 @media(max-width:900px){.hero h1{font-size:64px}.g2,.g3,.steps3,.gcols{grid-template-columns:1fr}.sh{display:block}.sh h2{font-size:44px}}
 </style></head><body>
 <nav><div class="wrap"><span class="brand"><i></i>Creator Pack v2</span><span class="sp"></span><a href="#websites">Websites</a><a href="#decks">Decks</a><a href="#business">Business</a><a href="#film">How to film</a><a href="#bonus">Bonus</a></div></nav>
@@ -111,7 +109,7 @@ footer{padding:60px 0 80px;color:var(--m);font-size:13px;border-top:1px solid va
 <footer>Every asset was made with Strawberry. Results differ a little each time you run a prompt, which is normal: just ask for changes in plain words.</footer>
 </div>
 
-<div id="viewer"><div id="vbar"><span class="t" id="vt"></span><span class="h" id="vh"></span><span class="sp"></span><a id="vnew" target="_blank" rel="noopener">Open in new tab</a><button id="vfs">Fullscreen</button><button id="vx">Close ✕</button></div><iframe id="frame" allow="fullscreen; autoplay"></iframe></div>
+<div id="viewer"><button id="vx" aria-label="Close">✕</button><iframe id="frame" allow="fullscreen; autoplay"></iframe></div>
 
 <script>
 const D={
@@ -199,9 +197,9 @@ document.getElementById('guides').innerHTML=G.map(g=>`<div class="guide"><h3>${g
 document.addEventListener('click',e=>{const c=e.target.closest('.copy');if(c){const txt=c.parentElement.textContent.replace(/^Copy/,'').trim();navigator.clipboard.writeText(txt).then(()=>{c.textContent='Copied';setTimeout(()=>c.textContent='Copy',1500)});return}
  const o=e.target.closest('[data-open]');if(o)openV(o.dataset.open)});
 const V=document.getElementById('viewer'),F=document.getElementById('frame');
-function openV(id){const x=all[id];F.src=x.u;document.getElementById('vt').textContent=x.t;document.getElementById('vh').textContent=/decks/.test(x.u)?'Click the slide, then use ← → keys':'Scroll to explore';document.getElementById('vnew').href=x.u;V.classList.add('on');document.body.style.overflow='hidden';history.replaceState(null,'','#view='+id);setTimeout(()=>F.focus(),300)}
+function openV(id){const x=all[id];F.src=x.u;V.classList.add('on','show');document.body.style.overflow='hidden';history.replaceState(null,'','#view='+id);setTimeout(()=>{F.focus();V.classList.remove('show')},2500)}
 function closeV(){V.classList.remove('on');F.src='about:blank';document.body.style.overflow='';history.replaceState(null,'',location.pathname)}
-document.getElementById('vx').onclick=closeV;document.getElementById('vfs').onclick=()=>V.requestFullscreen&&V.requestFullscreen();
+document.getElementById('vx').onclick=closeV;let vt;V.addEventListener('mousemove',()=>{V.classList.add('show');clearTimeout(vt);vt=setTimeout(()=>V.classList.remove('show'),1800)});
 addEventListener('keydown',e=>{if(e.key==='Escape'&&V.classList.contains('on'))closeV()});
 const m=location.hash.match(/view=([\w-]+)/);if(m&&all[m[1]])openV(m[1]);
 </script></body></html>
