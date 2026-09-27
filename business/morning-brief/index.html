@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Your morning, prepared · Strawberry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f6f3ee;--ink:#1d1b19;--m:#77716a;--line:#e3ddd4;--card:#fffdfa;--red:#e5484d;--grn:#2f9e6b;--amb:#d08a1d}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:"Inter Tight",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.mono{font-family:"JetBrains Mono",monospace;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--m)}
+.wrap{max-width:1180px;margin:0 auto;padding:56px 32px 80px}
+.top{display:flex;justify-content:space-between;align-items:center}
+.by{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--m)}
+.by i{width:22px;height:22px;border-radius:6px;background:linear-gradient(135deg,#ff6b6b,#e5484d);display:inline-block}
+h1{font-family:"Instrument Serif",serif;font-weight:400;font-size:88px;line-height:.95;letter-spacing:-.025em;margin-top:40px}
+h1 em{font-style:italic;color:var(--m)}
+.sum{font-size:22px;line-height:1.5;max-width:880px;margin-top:26px;min-height:100px}
+.sum b{font-weight:600}
+.caret{display:inline-block;width:2px;height:1.1em;background:var(--red);vertical-align:-3px;margin-left:2px;animation:bl 1s steps(1) infinite}@keyframes bl{50%{opacity:0}}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:40px}
+.st{padding:22px 20px;border-left:1px solid var(--line)}.st:first-child{border-left:0;padding-left:0}
+.st b{display:block;font-family:"Instrument Serif",serif;font-weight:400;font-size:54px;line-height:1;margin-top:10px}
+.cols{display:grid;grid-template-columns:1.25fr 1fr;gap:28px;margin-top:40px}
+h2{font-family:"Instrument Serif",serif;font-weight:400;font-size:34px;margin-bottom:14px}
+.item{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-bottom:12px;opacity:0;transform:translateY(16px);transition:opacity .7s,transform .8s cubic-bezier(.2,.8,.2,1)}
+.item.on{opacity:1;transform:none}
+.row{display:flex;justify-content:space-between;align-items:baseline;gap:14px}
+.t{font-weight:600;font-size:16px}
+.time{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--m)}
+.note{font-size:14.5px;line-height:1.55;color:#4a4540;margin-top:8px}
+.tags{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
+.tag{font-size:11.5px;padding:3px 9px;border-radius:999px;border:1px solid var(--line);color:var(--m)}
+.tag.r{border-color:rgba(229,72,77,.3);color:var(--red);background:rgba(229,72,77,.06)}
+.tag.g{border-color:rgba(47,158,107,.3);color:var(--grn);background:rgba(47,158,107,.06)}
+.draft{margin-top:12px;border-left:2px solid var(--red);padding:8px 12px;font-size:14px;line-height:1.5;color:#4a4540;background:#fbf7f1;border-radius:0 8px 8px 0}
+.btns{display:flex;gap:8px;margin-top:12px}
+.btn{font-size:12.5px;padding:7px 12px;border-radius:8px;border:1px solid var(--line);background:#fff}
+.btn.p{background:var(--ink);color:#fff;border-color:var(--ink)}
+.src{display:flex;gap:18px;margin-top:22px;flex-wrap:wrap}
+.src span{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--m);opacity:.35;transition:opacity .5s}
+.src span.on{opacity:1}
+.src span::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--line);transition:background .5s}
+.src span.on::before{background:var(--grn)}
+.foot{margin-top:50px;color:var(--m);font-size:12px;text-align:center}
+@media(max-width:900px){h1{font-size:56px}.cols,.stats{grid-template-columns:1fr}}
+</style></head><body><div class="wrap">
+<div class="top"><div class="by"><i></i>Prepared by your Strawberry companion</div><div class="mono" id="date"></div></div>
+<div class="src" id="src"><span>Gmail · 38 new</span><span>Calendar · 5 meetings</span><span>CRM · 42 deals</span><span>Slack · 3 mentions</span><span>Notes from yesterday's calls</span></div>
+<h1>Good morning, Emma. <em>Here's your day.</em></h1>
+<p class="sum" id="sum"></p>
+<div class="stats">
+  <div class="st"><span class="mono">Meetings</span><b>5</b></div>
+  <div class="st"><span class="mono">Emails that need you</span><b>3</b></div>
+  <div class="st"><span class="mono">Deals at risk</span><b style="color:var(--red)">2</b></div>
+  <div class="st"><span class="mono">Time saved this week</span><b>6h 40m</b></div>
+</div>
+<div class="cols">
+  <div>
+    <h2>Your meetings, prepped</h2>
+    <div class="item"><div class="row"><span class="t">H&amp;M Group, contract negotiation</span><span class="time">10:00</span></div>
+      <p class="note">They pushed back on the 3-year term last week. Their CFO Lina has posted about cost cutting twice this month. Lead with the 12-month option and the volume discount.</p>
+      <div class="tags"><span class="tag r">€240k</span><span class="tag">Brief ready</span><span class="tag">3 attendees researched</span></div></div>
+    <div class="item"><div class="row"><span class="t">Weekly team standup</span><span class="time">11:30</span></div>
+      <p class="note">Pipeline up 18% since last Monday. Two wins to call out: Volvo Cars and Truecaller.</p></div>
+    <div class="item"><div class="row"><span class="t">Intro call, Einride</span><span class="time">14:00</span></div>
+      <p class="note">New lead found yesterday. They're hiring six ops roles and use a competitor. Three questions drafted for you.</p>
+      <div class="tags"><span class="tag g">New</span><span class="tag">Company brief</span></div></div>
+  </div>
+  <div>
+    <h2>Needs you</h2>
+    <div class="item"><div class="row"><span class="t">Northvolt asked for pricing</span><span class="time">07:12</span></div>
+      <div class="draft">“Hi Johan, thanks for the quick reply. Here's the 400-seat quote, with onboarding included. Happy to walk through it Thursday.”</div>
+      <div class="btns"><span class="btn p">Send draft</span><span class="btn">Edit</span></div></div>
+    <div class="item"><div class="row"><span class="t">Deal at risk: Oatly EU</span><span class="time">No reply 9 days</span></div>
+      <p class="note">Your champion Anna changed roles. Strawberry found her replacement, Erik Nyström.</p>
+      <div class="btns"><span class="btn p">Draft intro to Erik</span></div></div>
+    <div class="item"><div class="row"><span class="t">Finance wants the Q4 forecast</span><span class="time">Slack</span></div>
+      <p class="note">Forecast sheet updated from the CRM this morning: €262k weighted for December.</p>
+      <div class="btns"><span class="btn p">Share sheet</span></div></div>
+  </div>
+</div>
+
+</div>
+<script>
+document.getElementById('date').textContent=new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'});
+const src=[...document.querySelectorAll('#src span')];src.forEach((s,i)=>setTimeout(()=>s.classList.add('on'),300+i*380));
+const text="You have <b>5 meetings</b>, and the one that matters is <b>H&M at 10:00</b>. Brief is ready. <b>Northvolt</b> replied overnight asking for pricing, a draft is waiting. <b>Oatly</b> has gone quiet because your champion left. I found who replaced her.";
+const el=document.getElementById('sum');let k=0;
+setTimeout(function type(){let out='',i=0,vis=0;while(i<text.length&&vis<k){if(text[i]==='<'){const j=text.indexOf('>',i);out+=text.slice(i,j+1);i=j+1}else{out+=text[i++];vis++}}
+ if(/<b>(?![^]*<\/b>)/.test(out))out+='</b>';el.innerHTML=out+'<span class="caret"></span>';k++;if(i<text.length)setTimeout(type,18);else revealItems()},2300);
+function revealItems(){document.querySelectorAll('.item').forEach((it,i)=>setTimeout(()=>it.classList.add('on'),200+i*180))}
+</script></body></html>

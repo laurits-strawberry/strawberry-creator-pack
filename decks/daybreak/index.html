@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>DAYBREAK · A softer start</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300..600&family=JetBrains+Mono:wght@500&display=block" rel="stylesheet">
+<link rel="stylesheet" href="../_engine/obj3d.css">
+<style>
+:root{--oat:#f4ecdc;--ink:#32251f;--terra:#ba583a;--line:#c9bba8}
+body{background:var(--oat);color:var(--ink);font-family:"Inter Tight",sans-serif}
+body[data-theme=dark]{color:var(--oat)}
+.mono{font-family:"JetBrains Mono",monospace;font-weight:500;letter-spacing:.12em;text-transform:uppercase;font-size:16px;opacity:.75}
+.hd{position:absolute;left:80px;right:80px;top:56px;display:flex;justify-content:space-between}
+.s{font-family:"Instrument Serif",serif;font-weight:400;letter-spacing:-.02em;line-height:.92}
+.i{font-style:italic}
+.p{font-size:30px;line-height:1.45;font-weight:300}
+.p b{font-weight:500}
+.giant{position:absolute;left:0;right:0;text-align:center;white-space:nowrap}
+.row{display:grid;grid-template-columns:1fr auto;align-items:baseline;padding:22px 0;border-top:1px solid var(--line)}
+.sw{display:inline-block;width:26px;height:26px;border-radius:50%;margin-right:14px;vertical-align:-5px}
+#astage{z-index:1}
+.actor{position:absolute;left:0;top:0;will-change:transform,opacity;transform-origin:50% 50%}
+.cup{filter:drop-shadow(0 30px 40px rgba(50,30,15,.28)) drop-shadow(0 6px 8px rgba(50,30,15,.18))}
+.bean{filter:drop-shadow(0 6px 6px rgba(40,20,5,.3))}
+.cro{filter:drop-shadow(0 20px 24px rgba(50,30,15,.25))}
+.chartlbl{position:absolute;font-family:"JetBrains Mono",monospace;font-size:15px;letter-spacing:.12em;text-transform:uppercase;opacity:.7}
+</style></head><body>
+<div class="stage back" id="back"></div>
+<div class="stage" id="astage"></div>
+<div class="stage" id="front">
+
+<section class="slide" data-bg="#f4ecdc">
+  <div class="bk"><p class="giant s i" style="top:230px;font-size:430px;color:#e8dcc6">Daybreak</p></div>
+  <div class="hd e"><span class="mono">Daybreak Coffee</span><span class="mono">Brand & expansion deck</span><span class="mono">Autumn 2026</span></div>
+  <div class="e" style="--d:.15s;position:absolute;left:0;right:0;bottom:64px;text-align:center"><p class="s" style="font-size:58px">Make room for <span class="i">the morning.</span></p></div>
+</section>
+
+<section class="slide" data-bg="#f4ecdc">
+  <div class="hd e"><span class="mono">01 / A little quiet</span><span class="mono">Daybreak</span></div>
+  <div style="position:absolute;left:80px;top:230px;width:780px">
+    <h2 class="s e" style="font-size:150px">The day can wait <span class="i">one more sip.</span></h2>
+    <p class="p e" style="--d:.12s;margin-top:44px;width:660px">Before the tabs, the trains and the to-do list. Daybreak is built around <b>the first good moment of the morning,</b> and we protect it like a product.</p>
+  </div>
+</section>
+
+<section class="slide" data-bg="#efe3cd">
+  <div class="hd e"><span class="mono">02 / The ritual</span><span class="mono">Daybreak</span></div>
+  <div style="position:absolute;right:80px;top:210px;width:700px">
+    <div class="e" style="border-top:1px solid var(--line);padding:30px 0"><p class="mono">01</p><p class="s" style="font-size:90px;margin-top:8px">Grind.</p></div>
+    <div class="e" style="--d:.1s;border-top:1px solid var(--line);padding:30px 0"><p class="mono">02</p><p class="s" style="font-size:90px;margin-top:8px">Brew.</p></div>
+    <div class="e" style="--d:.2s;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:30px 0"><p class="mono">03</p><p class="s i" style="font-size:90px;margin-top:8px">Pause.</p></div>
+  </div>
+</section>
+
+<section class="slide" data-bg="#2a1f19" data-theme="dark">
+  <div class="hd e"><span class="mono">03 / The coffee edit</span><span class="mono">Daybreak</span></div>
+  <div class="e" style="--d:.1s;position:absolute;right:80px;top:170px;width:640px;background:rgba(42,31,25,.88);padding:44px 48px">
+    <p class="s" style="font-size:80px">Four ways <span class="i">to begin.</span></p>
+    <div style="margin-top:30px;font-size:28px">
+      <div class="row" style="border-color:rgba(244,236,220,.2)"><span>Flat white</span><span>€4.8</span></div>
+      <div class="row" style="border-color:rgba(244,236,220,.2)"><span>Iced oat latte</span><span>€5.2</span></div>
+      <div class="row" style="border-color:rgba(244,236,220,.2)"><span>Espresso</span><span>€3.4</span></div>
+      <div class="row" style="border-color:rgba(244,236,220,.2);border-bottom:1px solid rgba(244,236,220,.2)"><span>Batch brew</span><span>€3.8</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-bg="#f1dfd2">
+  <div class="hd e"><span class="mono">04 / The identity</span><span class="mono">1 of 3</span></div>
+  <div style="position:absolute;left:80px;top:250px;width:720px">
+    <h2 class="s e" style="font-size:150px"><span class="i">Earth.</span></h2>
+    <p class="p e" style="--d:.1s;margin-top:30px">Terracotta glaze, thrown in Gustavsberg. The colour of the first light through the window.</p>
+    <p class="mono e" style="--d:.16s;margin-top:40px"><span class="sw" style="background:#ba583a;outline:1px solid var(--ink);outline-offset:5px"></span><span class="sw" style="background:#9aa58a"></span><span class="sw" style="background:#32251f"></span></p>
+  </div>
+</section>
+<section class="slide" data-bg="#e3e6d8">
+  <div class="hd e"><span class="mono">04 / The identity</span><span class="mono">2 of 3</span></div>
+  <div style="position:absolute;left:80px;top:250px;width:720px">
+    <h2 class="s e" style="font-size:150px"><span class="i">Paper.</span></h2>
+    <p class="p e" style="--d:.1s;margin-top:30px">Soft sage for the afternoon menu. Calm enough to sit with a book for an hour.</p>
+    <p class="mono e" style="--d:.16s;margin-top:40px"><span class="sw" style="background:#ba583a"></span><span class="sw" style="background:#9aa58a;outline:1px solid var(--ink);outline-offset:5px"></span><span class="sw" style="background:#32251f"></span></p>
+  </div>
+</section>
+<section class="slide" data-bg="#221a16" data-theme="dark">
+  <div class="hd e"><span class="mono">04 / The identity</span><span class="mono">3 of 3</span></div>
+  <div style="position:absolute;left:80px;top:250px;width:720px">
+    <h2 class="s e" style="font-size:150px"><span class="i">Evening.</span></h2>
+    <p class="p e" style="--d:.1s;margin-top:30px">Deep espresso glaze for the late opening, Thursday to Saturday until ten.</p>
+    <p class="mono e" style="--d:.16s;margin-top:40px"><span class="sw" style="background:#ba583a"></span><span class="sw" style="background:#9aa58a"></span><span class="sw" style="background:#3a2c25;outline:1px solid var(--oat);outline-offset:5px"></span></p>
+  </div>
+</section>
+
+<section class="slide" data-bg="#f4ecdc">
+  <div class="hd e"><span class="mono">05 / Growth</span><span class="mono">Daybreak</span></div>
+  <div style="position:absolute;left:80px;top:220px;width:860px">
+    <h2 class="s e" style="font-size:110px">Two cafés. <span class="i">Four by 2028.</span></h2>
+    <div class="e" style="--d:.12s;margin-top:50px;font-size:28px">
+      <div class="row"><span>Cups served a day</span><span>1,150</span></div>
+      <div class="row"><span>Returning guests</span><span>68%</span></div>
+      <div class="row"><span>Revenue, 2026</span><span>€2.1M</span></div>
+      <div class="row" style="border-bottom:1px solid var(--line)"><span>Next opening</span><span>Södermalm, spring 2027</span></div>
+    </div>
+  </div>
+<p class="chartlbl e" style="--d:0.3s;left:1150px;top:940px">2025</p><p class="chartlbl e" style="--d:0.4s;left:1320px;top:940px">2026</p><p class="chartlbl e" style="--d:0.5s;left:1490px;top:940px">2027</p><p class="chartlbl e" style="--d:0.6000000000000001s;left:1660px;top:940px">2028</p></section>
+
+<section class="slide" data-bg="#2a1f19" data-theme="dark">
+  <div class="e" style="position:absolute;left:0;right:0;top:120px;text-align:center"><p class="s" style="font-size:110px">A softer start.</p></div>
+  
+</section>
+
+</div>
+<script type="module" src="daybreak.js"></script>
+</body></html>

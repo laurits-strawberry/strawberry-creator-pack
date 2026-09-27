@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Strawberry Creator Pack · v2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f5f2ec;--ink:#1c1a18;--m:#78716a;--line:#e2dcd2;--card:#fffdf9;--red:#e5484d}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:"Inter Tight",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.mono{font-family:"JetBrains Mono",monospace;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--m)}
+.wrap{max-width:1320px;margin:0 auto;padding:0 32px}
+nav{position:sticky;top:0;z-index:20;background:rgba(245,242,236,.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;gap:26px;height:58px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:600}
+.brand i{width:22px;height:22px;border-radius:7px;background:linear-gradient(135deg,#ff6b6b,#e5484d);display:inline-block}
+nav a{text-decoration:none;font-size:14px;color:var(--m)}nav a:hover{color:var(--ink)}
+nav .sp{flex:1}
+.hero{padding:90px 0 60px}
+.hero h1{font-family:"Instrument Serif",serif;font-weight:400;font-size:112px;line-height:.92;letter-spacing:-.03em;max-width:1100px}
+.hero h1 em{color:var(--m)}
+.hero p{font-size:21px;line-height:1.5;max-width:720px;margin-top:28px;color:#3d3833}
+.steps3{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:50px;border-top:1px solid var(--line)}
+.steps3 div{padding:22px 24px 0 0}.steps3 b{display:block;font-family:"Instrument Serif",serif;font-weight:400;font-size:30px;margin:8px 0 6px}
+.steps3 span{font-size:15px;line-height:1.5;color:#4a443e}
+section.sec{padding:70px 0 20px;border-top:1px solid var(--line);margin-top:40px}
+.sh{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:30px}
+.sh h2{font-family:"Instrument Serif",serif;font-weight:400;font-size:64px;line-height:1;letter-spacing:-.02em}
+.sh p{max-width:460px;font-size:16px;line-height:1.5;color:#4a443e}
+.grid{display:grid;gap:22px;align-items:start}.g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column}
+.thumb{position:relative;aspect-ratio:16/10;overflow:hidden;cursor:pointer;background:#ddd}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}
+.card:hover .thumb img{transform:scale(1.035)}
+.play{position:absolute;left:16px;bottom:16px;background:rgba(20,18,16,.78);color:#fff;font-size:13px;padding:9px 14px;border-radius:999px;backdrop-filter:blur(8px);display:flex;gap:8px;align-items:center}
+.play::before{content:"";width:0;height:0;border-left:8px solid #fff;border-top:5px solid transparent;border-bottom:5px solid transparent}
+.body{padding:20px 22px 22px;display:flex;flex-direction:column;gap:10px;flex:1}
+.body h3{font-size:21px;font-weight:600;letter-spacing:-.01em;display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.body h3 .mono{font-size:10.5px}
+.body p{font-size:15px;line-height:1.5;color:#4a443e}
+.row{display:flex;gap:8px;margin-top:auto;padding-top:8px;flex-wrap:wrap}
+.btn{font:500 13.5px "Inter Tight",sans-serif;padding:10px 15px;border-radius:10px;border:1px solid var(--line);background:#fff;cursor:pointer;text-decoration:none;color:var(--ink)}
+.btn.p{background:var(--ink);color:#fff;border-color:var(--ink)}
+.btn:hover{border-color:var(--ink)}
+details{border-top:1px solid var(--line);margin-top:6px}
+summary{cursor:pointer;list-style:none;padding:14px 0 4px;font-weight:600;font-size:14.5px;display:flex;justify-content:space-between}
+summary::after{content:"+";font-weight:400;font-size:20px;line-height:1}details[open] summary::after{content:"–"}
+ol.how{padding-left:20px;font-size:14.5px;line-height:1.6;color:#3d3833;margin:8px 0}
+ol.how li{margin:4px 0}
+.prompt{position:relative;background:#1c1a18;color:#f1ede6;border-radius:12px;padding:16px 16px 16px;font:13px/1.6 "JetBrains Mono",monospace;white-space:pre-wrap;margin:10px 0}
+.copy{position:absolute;right:10px;top:10px;font:500 11.5px "Inter Tight";background:#35312d;color:#fff;border:0;border-radius:7px;padding:6px 10px;cursor:pointer}
+.tip{font-size:13.5px;color:var(--m);line-height:1.5}
+.guide{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:30px 32px;margin-bottom:22px}
+.guide h3{font-family:"Instrument Serif",serif;font-weight:400;font-size:38px;line-height:1.05;margin-bottom:6px}
+.guide .lead{font-size:16px;color:#4a443e;line-height:1.5;max-width:760px}
+.gcols{display:grid;grid-template-columns:1fr 1fr;gap:34px;margin-top:20px}
+.gcols h4{font-size:13px;font-weight:600;margin-bottom:6px;text-transform:uppercase;letter-spacing:.06em}
+.big ol{padding-left:22px;font-size:15.5px;line-height:1.65}
+.warn{font-size:13.5px;line-height:1.5;background:#fbeeee;border:1px solid #f2d1d1;border-radius:10px;padding:12px 14px;color:#7a2f31;margin-top:14px}
+footer{padding:60px 0 80px;color:var(--m);font-size:13px;border-top:1px solid var(--line);margin-top:60px}
+/* viewer */
+#viewer{position:fixed;inset:0;z-index:100;background:#0d0c0b;display:none;flex-direction:column}
+#viewer.on{display:flex}
+#vbar{height:48px;display:flex;align-items:center;gap:14px;padding:0 14px;color:#fff;font-size:13.5px;border-bottom:1px solid #2a2724}
+#vbar .t{font-weight:600}#vbar .h{color:#9b948c}
+#vbar .sp{flex:1}
+#vbar button,#vbar a{font:500 13px "Inter Tight";background:#2a2724;color:#fff;border:0;border-radius:8px;padding:7px 12px;cursor:pointer;text-decoration:none}
+#frame{flex:1;border:0;width:100%;background:#000}
+@media(max-width:900px){.hero h1{font-size:64px}.g2,.g3,.steps3,.gcols{grid-template-columns:1fr}.sh{display:block}.sh h2{font-size:44px}}
+</style></head><body>
+<nav><div class="wrap"><span class="brand"><i></i>Creator Pack v2</span><span class="sp"></span><a href="#websites">Websites</a><a href="#decks">Decks</a><a href="#business">Business</a><a href="#film">How to film</a><a href="#bonus">Bonus</a></div></nav>
+
+<div class="wrap">
+<header class="hero">
+  <p class="mono">Strawberry × LaunchPoint · Updated 27 September 2026</p>
+  <h1>Everything here was made by Strawberry. <em>Here's how to make it yourself.</em></h1>
+  <p>Open any piece right here. Scroll the websites, click through the decks. Under each one: the exact prompt we used and three simple steps. No experience needed.</p>
+  <div class="steps3">
+    <div><span class="mono">Step 1</span><b>Get Strawberry</b><span>Download it free at strawberrybrowser.com and sign in.</span></div>
+    <div><span class="mono">Step 2</span><b>Paste the prompt</b><span>Open a new chat, copy a prompt from this page and press Enter.</span></div>
+    <div><span class="mono">Step 3</span><b>Film it working</b><span>Phone on a stand, pointed at the laptop. Record while it builds, then show the result.</span></div>
+  </div>
+</header>
+
+<section class="sec" id="websites">
+  <div class="sh"><h2>Websites</h2><p>Four scroll sites for real kinds of local businesses. Cinematic video, motion, a proper layout. The kind of site you could pitch to a client.</p></div>
+  <div class="grid g2" id="g-web"></div>
+</section>
+
+<section class="sec" id="decks">
+  <div class="sh"><h2>Presentations</h2><p>Two businesses, two decks each: one beautiful and animated, one gloriously terrible on purpose. Click a deck, then use the arrow keys.</p></div>
+  <div class="grid g2" id="g-deck"></div>
+</section>
+
+<section class="sec" id="business">
+  <div class="sh"><h2>Real work, made visual</h2><p>The everyday business side of Strawberry: selling, following up and starting the day prepared. All three look good on camera and anyone gets them instantly.</p></div>
+  <div class="grid g3" id="g-biz"></div>
+</section>
+
+<section class="sec" id="film">
+  <div class="sh"><h2>How to film</h2><p>Five "watch it happen" moments. Each one is a single take where something real happens on screen.</p></div>
+  <div id="guides"></div>
+</section>
+
+<section class="sec" id="bonus">
+  <div class="sh"><h2>Bonus</h2><p>More animated decks, where an object moves and turns through the slides. Great for "10 out of 10" style roundups.</p></div>
+  <div class="grid g3" id="g-bonus"></div>
+</section>
+
+<footer>Every asset was made with Strawberry. Results differ a little each time you run a prompt, which is normal: just ask for changes in plain words.</footer>
+</div>
+
+<div id="viewer"><div id="vbar"><span class="t" id="vt"></span><span class="h" id="vh"></span><span class="sp"></span><a id="vnew" target="_blank" rel="noopener">Open in new tab</a><button id="vfs">Fullscreen</button><button id="vx">Close ✕</button></div><iframe id="frame" allow="fullscreen; autoplay"></iframe></div>
+
+<script>
+const D={
+web:[
+ {id:'lustre',t:'Lustre',k:'Car detailing studio',u:'sites/lustre/index.html',d:'A black sports car in a dark studio. As you scroll, the camera circles it like a drone, then foam, polish and gloss.',
+  p:`Build me a one-page website for Lustre, a luxury car detailing studio in Stockholm. Make it feel like an art piece. Start with a full-screen cinematic video of a black sports car in a dark studio. As I scroll, the camera should move around the car like a drone, from different angles. Then show the detailing: foam, polishing, the final gloss. Generate the videos yourself. After that add services, prices and a booking section. Big clean typography, mostly black, nothing that looks like stock photos. Open it when it's done so I can scroll through it.`,
+  f:['Make the opening even more dramatic and immersive.','Publish it and give me a public link.']},
+ {id:'solstice',t:'Solstice',k:'Sparkling drink brand',u:'sites/solstice/index.html',d:'A can opening in slow motion, citrus falling through the frame, a dive into the bubbles.',
+  p:`Build me an immersive one-page website for Solstice, a sparkling citrus drink from Stockholm. Open with a slow-motion video of a can being cracked open. As I scroll, show lemon, lime and orange falling through the frame and a dive into the bubbles. Generate the videos yourself. Then add the flavours, where to buy and a short brand story. Bold condensed type, clean layout. Open it when done.`,
+  f:['Add a flavour switcher that changes the colours of the page.','Publish it and give me a public link.']},
+ {id:'odman',t:'Ödman',k:'Independent watchmaker',u:'sites/odman/index.html',d:'Macro shots of a movement being assembled, gears turning, a quiet luxury feel.',
+  p:`Build a one-page website for Ödman, an independent watchmaker in Stockholm. It should feel like quiet luxury. Open with macro video of a watch movement, then show the watch being assembled piece by piece as I scroll, with smooth transitions. Generate the videos yourself. Add the collection, the workshop story and a way to book a visit. Elegant serif type, lots of space, make sure all text is easy to read over the videos. Open it when done.`,
+  f:['Check every section on a phone-sized screen and fix anything hard to read.','Publish it and give me a public link.']},
+ {id:'ekdal',t:'Ekdal',k:'Solid wood furniture',u:'sites/ekdal/index.html',d:'Hands, plane and grain. A furniture maker site with a real shop layout underneath the craft.',
+  p:`Build a one-page website for Ekdal, a small solid wood furniture maker in Stockholm. Open with a close-up video of a hand plane shaving oak, then show the making process as I scroll. Generate the videos yourself. Underneath, add a proper product section with a few pieces and prices, the story of the workshop and contact details. Warm, calm and premium. Open it when done.`,
+  f:['Make the product section look like a real online shop.','Publish it and give me a public link.']}],
+deck:[
+ {id:'daybreak',t:'Daybreak · the good one',k:'Coffee shop · polished',u:'decks/daybreak/index.html',d:'A real terracotta cup of flat white spins, beans orbit and pour, the camera dives into the latte art and the cup changes colour.',
+  p:`Make a 9-slide pitch deck for Daybreak, a specialty coffee shop in Stockholm, as an animated presentation I can click through. Generate a realistic top-down photo of a terracotta cup of flat white with latte art on a saucer, one of a croissant and one of loose coffee beans, cut them out and make them move between slides: the cup slowly spins, beans orbit around it and pour in, the camera dives into the latte art on the menu slide, and the cup changes glaze colour on the brand slides. Warm oat and terracotta colours, elegant serif headlines, clean layout. Open it when done.`,
+  f:['Make the beans form a bar chart on the growth slide.','Publish it and give me a link.']},
+ {id:'after-coffee',t:'Daybreak · after 9 espressos',k:'Coffee shop · meme',u:'decks/after-coffee/index.html',d:'The same café pitched by a barista who has had far too much coffee. WordArt, star wipes, zero restraint.',
+  p:`Now make the worst possible version of this Daybreak deck on purpose, like a PowerPoint from 2003 made by a barista after nine espressos. Use WordArt, Comic Sans, spinning and star-wipe transitions, emoji clip art, rainbow gradients and silly jokes. Make it genuinely funny, but keep every line readable. 7 slides. Open it when done.`,
+  f:['Make it even more chaotic.']},
+ {id:'stack',t:'Stack · the good one',k:'Burger shop · polished',u:'decks/stack/index.html',d:'A real smash burger builds itself on the cover, explodes into labelled layers, gets smashed, falls apart and takes a bite.',
+  p:`Make a 7-slide investor deck for Stack, a smash burger restaurant in Stockholm, as an animated presentation. Generate one realistic photo of a double smash cheeseburger with every ingredient floating apart in a column on white, cut each layer out, and animate them: the burger builds itself on the cover, explodes into labelled layers on the anatomy slide, a patty gets smashed on the method slide, it falls apart across the numbers slide, and a bite disappears on the last slide. Bold red and yellow, huge wide headlines. Open it when done.`,
+  f:['Make the burger bigger on the cover.','Publish it and give me a link.']},
+ {id:'stackholder',t:'Stackholder Meeting',k:'Burger shop · meme',u:'decks/stackholder/index.html',d:'A burger chain\'s board meeting, as designed by an intern in 2003. The SWOT analysis is burger, burger, bigger burger, salad.',
+  p:`Make a meme deck called "Stackholder Meeting" for the Stack burger shop. Make it look like a terrible 2003 PowerPoint on purpose: WordArt titles, spinning transitions, emoji clip art, a ridiculous growth chart, a SWOT analysis that's all burgers, and a "Thank you!!!" ending. Funny, fast, readable. 8 slides. Open it when done.`,
+  f:['Add one more slide with a pie chart that is literally a burger.']}],
+biz:[
+ {id:'sales-dashboard',t:'Live sales dashboard',k:'Sales',u:'business/sales-dashboard/index.html',d:'Pipeline, revenue and a deal board that updates itself while you watch: deals move stages, a contract closes, a new lead appears.',
+  p:`Build me a live sales dashboard. Use my deals from my CRM and my recent emails and meetings. Show open pipeline, closed won, win rate, revenue vs target, where deals come from, a deal board by stage, a live activity feed and a ranked list of next best actions. Dark, clean, premium design. Open it when it's ready.
+
+(No CRM or want to film safely? Add: "Use realistic demo data for a fictional company.")`,
+  f:['Make it update every morning at 8 as a routine.']},
+ {id:'morning-brief',t:'Your morning, prepared',k:'Operations',u:'business/morning-brief/index.html',d:'Strawberry reads your inbox, calendar and CRM and writes a one-page brief: meetings with prep notes, replies drafted, deals at risk.',
+  p:`Read my inbox, calendar and CRM and make me a beautiful one-page morning brief: a short summary of my day, my meetings with prep notes, the emails that need me with replies drafted, and deals at risk. Open it when done.
+
+Then: Turn this into a routine that runs every weekday at 8:00.
+
+(For filming with fake data, add: "Use a fictional person and company.")`,
+  f:['Only include things that actually need me today.']},
+ {id:'outreach-tracker',t:'Outreach tracker',k:'Sales',u:'business/outreach-tracker.html',d:'A clean tracker for every person you reach out to. Pair it with the LinkedIn guide below.',
+  p:`Build me a simple outreach tracker I can open in the browser. Columns for name, company, where I reached them, status (new, messaged, replied, meeting, not interested) and next step. Big numbers at the top for messages sent, replies and meetings. Let me add and edit people and save it. Clean, calm design. Open it when done.`,
+  f:['Add the person I just messaged to the tracker.']}],
+bonus:[
+ {id:'ostra',t:'Ostra',k:'Car launch deck',u:'decks/ostra/index.html',d:'A 3D concept car drives and turns between slides and changes paint colour.'},
+ {id:'korso',t:'Korso',k:'Sneaker launch deck',u:'decks/korso/index.html',d:'A 3D sneaker rotates and swaps colourways slide by slide.'},
+ {id:'orbital',t:'Orbital',k:'Space company deck',u:'decks/orbital/index.html',d:'Earth turns from day to night as you move through the story.'},
+ {id:'halden',t:'Halden',k:'Brand platform deck',u:'decks/halden/index.html',d:'A Nordic outerwear brand deck in an editorial style.'},
+ {id:'parallel',t:'Parallel',k:'Research report deck',u:'decks/parallel/index.html',d:'An editorial research report with charts and big statements.'}]
+};
+const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;');
+function card(x,withHow=true){const how=withHow&&x.p?`<details><summary>How to make this</summary>
+<ol class="how"><li>Open Strawberry and start a new chat.</li><li>Copy the prompt below and paste it in. Press Enter.</li><li>Wait while it works (usually 5 to 20 minutes). It opens the result for you.</li>${x.f?`<li>Want changes? Just say so, for example: <em>"${x.f.join('"</em> or <em>"')}"</em></li>`:''}</ol>
+<div class="prompt"><button class="copy">Copy</button>${esc(x.p)}</div></details>`:'';
+ return `<div class="card"><div class="thumb" data-open="${x.id}"><img loading="lazy" src="thumbs/${x.id}.jpg" alt="${x.t}"><span class="play">${/decks/.test(x.u)?'Click through':'Open'}</span></div>
+ <div class="body"><h3>${x.t}<span class="mono">${x.k}</span></h3><p>${x.d}</p><div class="row"><button class="btn p" data-open="${x.id}">Open here</button><a class="btn" href="${x.u}" target="_blank" rel="noopener">New tab</a></div>${how}</div></div>`}
+const all={};Object.values(D).flat().forEach(x=>all[x.id]=x);
+document.getElementById('g-web').innerHTML=D.web.map(x=>card(x)).join('');
+document.getElementById('g-deck').innerHTML=D.deck.map(x=>card(x)).join('');
+document.getElementById('g-biz').innerHTML=D.biz.map(x=>card(x)).join('');
+document.getElementById('g-bonus').innerHTML=D.bonus.map(x=>card(x,false)).join('');
+// guides
+const G=[
+ {t:'1. Publish a website live',lead:'The "it doesn\'t just build it, it puts it online" moment. The link appears in the chat and you open it on your phone.',
+  steps:['Build any website from the section above, or open one you already made in Strawberry.','Start recording.','Type the prompt on the right and press Enter.','When the link appears in the chat, click it. Then open the same link on your phone and hold it up to the camera.'],
+  p:'Publish this website as a public link and give me the link.',tips:['Show the link arriving in the chat, then the site loading. That is the payoff.','Say out loud: "That\'s live. Anyone can open it."']},
+ {t:'2. Watch it build a presentation',lead:'Film the chat while Strawberry works, then click through the finished deck.',
+  steps:['Copy one of the deck prompts above.','Start recording, paste it and press Enter.','Film a few seconds of it working. You can cut the waiting in your edit.','When it opens the deck, click through three or four slides.'],
+  p:'Make a 7-slide animated pitch deck for [your business idea]. Generate a realistic photo of the main product, cut it out, and make it move between slides. Clean, modern design. Open it when done.',tips:['If you speed up the waiting part, say "sped up" on screen.','The meme decks are perfect for the ending: "and here\'s the version my uncle would make."']},
+ {t:'3. Your day, prepared while you sleep',lead:'A routine that runs by itself every morning. Easy for anyone to understand.',
+  steps:['Connect your email and calendar in Strawberry settings (Settings, then Integrations). Or use fictional data.','Paste the morning brief prompt from the Business section.','When the brief opens, read one item out loud.','Then say: "Turn this into a routine that runs every weekday at 8:00." Film it confirming.'],
+  p:'Read my inbox, calendar and CRM and make me a one-page morning brief with prep notes for my meetings, drafted replies for emails that need me, and deals at risk. Then make it a routine every weekday at 8:00.',tips:['Blur real names and emails before posting.','"I woke up and this was waiting for me" is the hook.']},
+ {t:'4. Meet Skill Sage, a companion that teaches you',lead:'Instead of doomscrolling, you get a companion that teaches you one small skill a day. Strawberry creates it on camera.',
+  steps:['Start recording.','Paste the prompt on the right and press Enter.','Strawberry creates the new companion. Open it from the link it gives you.','Ask Skill Sage for today\'s lesson and film the answer.'],
+  p:'Create a new companion called Skill Sage. Its job: instead of doomscrolling, teach me one practical skill a day in 10 minutes, with one tiny exercise, and check in the next day to see how it went. Friendly, short and encouraging. Then set up a routine so Skill Sage sends me today\'s lesson every morning at 8.',tips:['Good first lessons: "how to write a cold email", "Excel pivot tables in 10 minutes", "how to negotiate a raise".','Companions have their own memory, so film it remembering yesterday\'s lesson.']},
+ {t:'5. Reach out to a lead on LinkedIn, live',lead:'Strawberry opens LinkedIn in your browser, reads the conversation, writes a message and sends it after you say yes. The clock on screen shows it is live.',
+  steps:['Log in to LinkedIn in Strawberry yourself. Never film your password.','Pick one real person you already talk to (a colleague works for the video).','Show the clock in the corner of your screen, then start one continuous recording.','Paste the prompt. Read the draft Strawberry shows you, say "send it", and film the message appearing in the chat.','Optional: ask Strawberry to add them to your outreach tracker.'],
+  p:'Open my LinkedIn conversation with [NAME]. Read our last messages and draft one short, friendly follow-up about [WHAT YOU WANT TO SAY]. Show me the draft first. Only send it after I say yes. Then add [NAME] to my outreach tracker as "messaged".',
+  warn:'One person, one message, with their permission to show it. Don\'t mass-message strangers: LinkedIn can restrict accounts that send lots of automated messages.',tips:['Keep it in one take from "paste" to "sent". That\'s what makes it believable.','Blur the other person\'s face and name unless they said yes.']}];
+document.getElementById('guides').innerHTML=G.map(g=>`<div class="guide"><h3>${g.t}</h3><p class="lead">${g.lead}</p><div class="gcols"><div class="big"><h4>Steps</h4><ol>${g.steps.map(s=>`<li>${s}</li>`).join('')}</ol>${g.warn?`<div class="warn">${g.warn}</div>`:''}</div><div><h4>Prompt</h4><div class="prompt"><button class="copy">Copy</button>${esc(g.p)}</div><h4 style="margin-top:14px">Filming tips</h4><ol class="how">${g.tips.map(s=>`<li>${s}</li>`).join('')}</ol></div></div></div>`).join('')+
+`<div class="guide"><h3>Filming checklist</h3><div class="gcols"><ol class="how"><li>Phone on a stand or a stack of books, pointed at the laptop.</li><li>Laptop brightness all the way up. Room lights down a bit, to avoid glare.</li><li>Zoom the browser in (Cmd and +) so text is readable on a phone screen.</li><li>Close other tabs and turn on Do Not Disturb.</li></ol><ol class="how" start="5"><li>For "live" moments, record one continuous take.</li><li>Show the result at the end, always. The result is the story.</li><li>Websites: scroll slowly. Decks: press the right arrow and wait for the animation to finish.</li><li>Keep takes short. 20 to 40 seconds per moment is plenty.</li></ol></div></div>`;
+// copy
+document.addEventListener('click',e=>{const c=e.target.closest('.copy');if(c){const txt=c.parentElement.textContent.replace(/^Copy/,'').trim();navigator.clipboard.writeText(txt).then(()=>{c.textContent='Copied';setTimeout(()=>c.textContent='Copy',1500)});return}
+ const o=e.target.closest('[data-open]');if(o)openV(o.dataset.open)});
+const V=document.getElementById('viewer'),F=document.getElementById('frame');
+function openV(id){const x=all[id];F.src=x.u;document.getElementById('vt').textContent=x.t;document.getElementById('vh').textContent=/decks/.test(x.u)?'Click the slide, then use ← → keys':'Scroll to explore';document.getElementById('vnew').href=x.u;V.classList.add('on');document.body.style.overflow='hidden';history.replaceState(null,'','#view='+id);setTimeout(()=>F.focus(),300)}
+function closeV(){V.classList.remove('on');F.src='about:blank';document.body.style.overflow='';history.replaceState(null,'',location.pathname)}
+document.getElementById('vx').onclick=closeV;document.getElementById('vfs').onclick=()=>V.requestFullscreen&&V.requestFullscreen();
+addEventListener('keydown',e=>{if(e.key==='Escape'&&V.classList.contains('on'))closeV()});
+const m=location.hash.match(/view=([\w-]+)/);if(m&&all[m[1]])openV(m[1]);
+</script></body></html>

@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ekdal · Solid wood furniture, Stockholm</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Inter+Tight:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#eee8dc;--paper2:#e4ddcf;--ink:#1c1915;--soft:rgba(28,25,21,.72);--mute:rgba(28,25,21,.52);--line:rgba(28,25,21,.15);--oak:#9c6a3a;--e:cubic-bezier(.19,1,.22,1);--pad:clamp(20px,3vw,44px)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--paper)}html.lenis,html.lenis body{height:auto}
+body{background:var(--paper);color:var(--ink);font-family:'Inter Tight',sans-serif;font-size:16px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a,button{color:inherit;text-decoration:none;font:inherit;background:none;border:0;cursor:pointer}
+img,video,canvas{display:block}
+.f{font-family:'Fraunces',serif;font-weight:300;letter-spacing:-.03em;line-height:.92;font-variation-settings:'opsz' 144}
+.f em{font-style:italic}
+.lab{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.pin{position:sticky;top:0;height:100vh;overflow:hidden}
+.full{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+
+#loader{position:fixed;inset:0;z-index:100;background:var(--ink);color:var(--paper);display:flex;align-items:flex-end;justify-content:space-between;padding:var(--pad);transition:transform 1.4s var(--e)}
+#loader.out{transform:translateY(-100%)}
+#loader .y{font-family:'Fraunces';font-weight:300;font-size:clamp(100px,16vw,280px);line-height:.8;font-variant-numeric:tabular-nums;letter-spacing:-.04em}
+#loader .lab{color:rgba(238,232,220,.6)}
+
+nav{position:fixed;inset:0 0 auto;z-index:60;height:74px;padding:0 var(--pad);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;transition:background .5s,color .5s}
+nav.solid{background:rgba(238,232,220,.86);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+nav.dark{color:var(--paper)}
+nav .links{display:flex;gap:30px;font-size:14px}
+nav .logo{font-family:'Fraunces';font-size:26px;letter-spacing:-.02em}
+nav .right{justify-self:end;display:flex;gap:26px;align-items:center;font-size:14px}
+nav .pill{border:1px solid currentColor;border-radius:999px;padding:9px 16px;opacity:.9}
+#shortN{font-variant-numeric:tabular-nums}
+
+/* HERO */
+#hero{height:440vh}
+.h-head{position:absolute;left:var(--pad);top:20vh;z-index:1;width:36vw}
+.h-head h1{font-size:clamp(62px,6.8vw,128px)}
+.h-head h1 .l{display:block;overflow:hidden;padding-bottom:.08em}
+.h-head h1 .l span{display:block;transform:translateY(110%);transition:transform 1.6s var(--e)}
+.ready .h-head h1 .l span{transform:none}.ready .h-head h1 .l:nth-child(2) span{transition-delay:.1s}
+.h-head p{margin-top:34px;font-size:17px;line-height:1.55;color:var(--soft);max-width:32ch;opacity:0;transition:opacity 1.4s .5s}
+.ready .h-head p{opacity:1}
+.h-meta{position:absolute;left:var(--pad);bottom:var(--pad);z-index:1;display:flex;gap:40px}
+.h-meta div{font-size:14px;line-height:1.5;color:var(--soft)}.h-meta b{display:block;font-family:'Fraunces';font-weight:300;font-size:34px;color:var(--ink)}
+.h-frame{position:absolute;inset:0;z-index:2;will-change:clip-path}
+.h-frame canvas{position:absolute;inset:0;width:100%;height:100%}
+.h-frame .scrim{position:absolute;inset:0;background:linear-gradient(0deg,rgba(15,12,9,.72) 0%,rgba(15,12,9,0) 42%);opacity:0}
+.h-cap{position:absolute;z-index:3;left:var(--pad);right:var(--pad);bottom:var(--pad);display:flex;justify-content:space-between;align-items:flex-end;color:var(--paper);opacity:0}
+.h-cap h2{font-size:clamp(46px,5vw,96px)}
+.h-cap .mm{text-align:right}.h-cap .mm>span{font-size:13px;letter-spacing:.14em;text-transform:uppercase;opacity:.75}
+.h-cap .mm b{display:block;font-family:'Fraunces';font-weight:300;font-size:clamp(56px,6vw,110px);line-height:1;font-variant-numeric:tabular-nums}
+
+/* TREE */
+#tree{height:320vh}
+#tree .pin{display:grid;grid-template-columns:1fr 1fr}
+.t-left{padding:18vh var(--pad) var(--pad);display:flex;flex-direction:column;justify-content:space-between}
+.t-num{font-family:'Fraunces';font-weight:300;font-size:clamp(150px,19vw,340px);line-height:.8;letter-spacing:-.05em;font-variant-numeric:tabular-nums}
+.t-num small{font-size:.2em;letter-spacing:-.01em;font-style:italic;margin-left:14px;color:var(--oak)}
+.t-left h2{font-size:clamp(34px,3.2vw,56px);max-width:18ch;margin-top:26px}
+.t-left p{font-size:16px;line-height:1.6;color:var(--soft);max-width:44ch}
+.t-facts{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line)}
+.t-facts div{padding:18px 12px 0 0;font-size:15px;line-height:1.45}
+.t-facts .lab{display:block;margin-bottom:6px;font-size:11px}
+.t-right{position:relative;overflow:hidden;will-change:clip-path}
+.t-right video{will-change:transform}
+.t-right .tag{position:absolute;left:22px;bottom:22px;background:var(--paper);color:var(--ink);font-size:13px;padding:10px 14px;border-radius:999px}
+
+/* MAKE */
+#make{height:640vh}
+#make .pin{background:var(--ink)}
+.m-film{position:absolute;left:0;right:0;top:0;bottom:30vh;overflow:hidden}
+.m-clip{position:absolute;inset:0;will-change:clip-path}
+.m-clip video{will-change:transform}
+.m-band{position:absolute;left:0;right:0;bottom:0;height:30vh;background:var(--paper);display:grid;grid-template-columns:1fr 1.2fr 1.3fr;gap:3vw;align-items:center;padding:0 var(--pad)}
+.m-day{display:flex;align-items:baseline;gap:14px}
+.m-day .lab{font-size:12px}
+.m-day b{font-family:'Fraunces';font-weight:300;font-size:clamp(90px,10vw,180px);line-height:.8;letter-spacing:-.05em;font-variant-numeric:tabular-nums}
+.sw{position:relative;overflow:hidden}
+.sw>*{position:absolute;left:0;top:0;right:0;transform:translateY(105%);transition:transform 1s var(--e)}
+.sw>.on{transform:none}.sw>.up{transform:translateY(-105%)}
+.m-title{height:clamp(56px,5vw,96px)}
+.m-title>div{font-size:clamp(52px,4.8vw,92px);white-space:nowrap}
+.m-text{height:110px}
+.m-text>p{font-size:16px;line-height:1.6;color:var(--soft);max-width:44ch;transition:transform 1s var(--e),opacity .6s;opacity:0}
+.m-text>p.on{opacity:1}
+.m-rail{position:absolute;left:var(--pad);right:var(--pad);top:0;height:2px;background:var(--line)}
+.m-rail i{position:absolute;inset:0 auto 0 0;width:0;background:var(--oak)}
+.m-rail span{position:absolute;top:12px;font-size:12px;color:var(--mute);transform:translateX(-50%);white-space:nowrap;transition:color .4s}
+.m-rail span.on{color:var(--ink)}
+.m-over{position:absolute;left:var(--pad);top:96px;z-index:3;color:var(--paper)}
+.m-over .lab{color:rgba(238,232,220,.75)}
+
+/* CHAIR */
+#chair{height:420vh}
+.c-back{position:absolute;inset:0;padding:110px var(--pad) var(--pad);display:flex;flex-direction:column;justify-content:space-between}
+.c-back h2{font-size:clamp(90px,14vw,270px);display:flex;justify-content:space-between}
+.c-back .row{display:flex;justify-content:space-between;align-items:flex-end}
+.c-back p{max-width:36ch;font-size:17px;line-height:1.55;color:var(--soft)}
+.c-win{position:absolute;inset:0;z-index:2;will-change:clip-path}
+.c-win img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;will-change:transform}
+.hs{position:absolute;z-index:4;display:flex;align-items:flex-start;gap:12px;opacity:0;transform:translateY(14px);transition:opacity .8s var(--e),transform .8s var(--e)}
+.hs.on{opacity:1;transform:none}
+.hs .dot{flex:none;width:16px;height:16px;margin-top:14px;border-radius:50%;background:var(--paper);box-shadow:0 0 0 6px rgba(238,232,220,.3)}
+.hs .card{background:var(--paper);color:var(--ink);padding:14px 16px;border-radius:6px;max-width:250px;box-shadow:0 12px 40px rgba(0,0,0,.18)}
+.hs .card .lab{font-size:11px}
+.hs .card b{display:block;font-family:'Fraunces';font-weight:400;font-size:24px;letter-spacing:-.02em;margin:4px 0}
+.hs .card p{font-size:14px;line-height:1.45;color:var(--soft)}
+.c-bar{position:absolute;z-index:5;left:var(--pad);right:var(--pad);bottom:var(--pad);background:var(--paper);border-radius:8px;padding:18px 18px 18px 26px;display:flex;justify-content:space-between;align-items:center;opacity:0;transform:translateY(20px);transition:opacity .8s var(--e),transform .8s var(--e)}
+.c-bar.on{opacity:1;transform:none}
+.c-bar .nm{font-family:'Fraunces';font-size:34px;letter-spacing:-.02em}
+.c-bar .nm span{font-family:'Inter Tight';font-size:15px;color:var(--mute);margin-left:14px;letter-spacing:0}
+.woods{display:flex;gap:8px;margin-right:18px}
+.woods button{width:30px;height:30px;border-radius:50%;border:2px solid transparent;outline:1px solid var(--line);transition:border-color .3s}
+.woods button.on{border-color:var(--paper);outline:2px solid var(--ink)}
+.btn{display:inline-flex;align-items:center;gap:12px;background:var(--ink);color:var(--paper);border-radius:999px;padding:16px 24px;font-size:15px;font-weight:500;transition:transform .5s var(--e),background .3s}
+.btn:hover{transform:translateY(-2px);background:#000}
+
+/* INDEX */
+#index{padding:22vh var(--pad) 18vh}
+.i-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:6vh;gap:30px}
+.i-head h2{font-size:clamp(80px,10vw,190px)}
+.filters{display:flex;gap:8px}
+.filters button{padding:11px 18px;border:1px solid var(--line);border-radius:999px;font-size:14px;transition:background .3s,color .3s}
+.filters button.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.rows{border-top:1px solid var(--ink)}
+.item{display:grid;grid-template-columns:60px 1.4fr 1fr 1fr 130px 50px;align-items:center;gap:20px;padding:24px 0;border-bottom:1px solid var(--line);font-size:15px;color:var(--soft)}
+.item .no{font-variant-numeric:tabular-nums;color:var(--mute)}
+.item .nm{font-family:'Fraunces';font-weight:300;font-size:clamp(40px,4.2vw,78px);letter-spacing:-.03em;line-height:1;color:var(--ink);transition:transform .7s var(--e),color .4s}
+.item:hover .nm{transform:translateX(20px);color:var(--oak);font-style:italic}
+.item .pr{text-align:right;color:var(--ink);font-variant-numeric:tabular-nums}
+.item .sv{width:46px;height:46px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;font-size:18px;color:var(--ink);transition:background .3s,color .3s,transform .5s var(--e)}
+.item .sv:hover{transform:scale(1.08)}
+.item .sv.on{background:var(--oak);color:var(--paper);border-color:var(--oak)}
+.item.hide{display:none}
+#peek{position:fixed;left:0;top:0;width:320px;height:410px;z-index:50;pointer-events:none;overflow:hidden;border-radius:6px;opacity:0;transition:opacity .45s var(--e)}
+#peek.on{opacity:1}
+#peek img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .4s}
+#peek img.on{opacity:1}
+
+/* STUDIO */
+#studio{height:220vh}
+#studio .pin{color:var(--paper)}
+#studio .clipw{position:absolute;inset:0;will-change:clip-path}
+#studio video{will-change:transform}
+#studio .scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,12,9,.35),rgba(15,12,9,.2) 40%,rgba(15,12,9,.85))}
+.s-in{position:absolute;inset:0;padding:110px var(--pad) var(--pad);display:flex;flex-direction:column;justify-content:flex-end;gap:6vh}
+.s-in h2{font-size:clamp(76px,10vw,190px)}
+.s-in h2 .l{display:block;overflow:hidden;padding-bottom:.06em}.s-in h2 .l span{display:block;transform:translateY(110%)}
+.s-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;border-top:1px solid rgba(238,232,220,.35);padding-top:22px;font-size:15px;line-height:1.6}
+.s-grid .lab{display:block;color:rgba(238,232,220,.7);margin-bottom:8px}
+footer{padding:14vh var(--pad) 28px}
+.news{display:grid;grid-template-columns:1fr 1fr;gap:6vw;align-items:end;padding-bottom:12vh;border-bottom:1px solid var(--line)}
+.news h3{font-size:clamp(56px,6vw,116px)}
+.nform{display:flex;border-bottom:1px solid var(--ink)}
+.nform input{flex:1;background:none;border:0;font:inherit;font-size:18px;padding:18px 0;outline:none;color:var(--ink)}
+.nform button{font-size:15px;font-weight:500}
+footer .big{font-family:'Fraunces';font-weight:300;font-size:29vw;letter-spacing:-.06em;line-height:.8;text-align:center;margin:10vh 0 24px}
+footer .legal{display:flex;justify-content:space-between;font-size:13px;color:var(--mute)}
+#toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,160%);z-index:90;background:var(--ink);color:var(--paper);border-radius:999px;padding:14px 22px;font-size:14px;transition:transform .8s var(--e)}
+#toast.on{transform:translate(-50%,0)}
+.fd{opacity:0;transform:translateY(28px);transition:opacity 1.2s var(--e),transform 1.2s var(--e)}.fd.in{opacity:1;transform:none}
+@media(max-width:900px){nav .links{display:none}.h-head{width:auto;right:var(--pad)}#tree .pin{grid-template-columns:1fr;grid-template-rows:1.1fr 1fr}.m-band{grid-template-columns:1fr 1fr}.m-text{display:none}.item{grid-template-columns:36px 1fr 90px 46px}.item .c3,.item .c4{display:none}.s-grid,.news{grid-template-columns:1fr 1fr}#peek{display:none}.hs .card{max-width:190px}}
+</style>
+<script type="importmap">{"imports":{"lenis":"https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.mjs"}}</script>
+</head>
+<body>
+<div id="loader"><span class="lab">Ekdal · the oak in your table was planted in</span><span class="y" id="ly">1926</span></div>
+<div id="toast">Saved</div>
+<div id="peek"></div>
+
+<nav id="nav">
+  <div class="links"><a href="#make">How it's made</a><a href="#chair">Söder chair</a><a href="#index">Collection</a><a href="#studio">Workshop</a></div>
+  <a class="logo" href="#hero">Ekdal</a>
+  <div class="right"><a href="#index">Shortlist (<span id="shortN">0</span>)</a><a class="pill" href="#studio">Visit us</a></div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="pin">
+    <div class="h-head" id="hhead">
+      <h1 class="f"><span class="l"><span>Made slowly.</span></span><span class="l"><span><em>Kept for good.</em></span></span></h1>
+      <p>Solid wood furniture, planed, joined and oiled by hand in our workshop on Södermalm.</p>
+    </div>
+    <div class="h-meta" id="hmeta"><div><b>14 days</b>per chair</div><div><b>0 screws</b>only joinery</div><div><b>100 years</b>of oak</div></div>
+    <div class="h-frame" id="hframe"><canvas id="cvP"></canvas><div class="scrim" id="hscrim"></div></div>
+    <div class="h-cap" id="hcap"><h2 class="f">One stroke.<br><em>A tenth of a millimetre.</em></h2><div class="mm"><span>Removed</span><b><span id="mmv">0.00</span><small style="font-size:.4em;margin-left:8px">mm</small></b></div></div>
+  </div>
+</section>
+
+<!-- TREE -->
+<section id="tree">
+  <div class="pin">
+    <div class="t-left">
+      <div><span class="lab">Where it starts</span><div class="t-num" style="margin-top:18px"><span id="yrs">0</span><small>years</small></div><h2 class="f">The oak in a Långbord table grew for a century before we met it.</h2></div>
+      <div><p style="margin-bottom:28px">We only buy trees felled for forest health in Småland, then air-dry the boards for two years before a single cut. Every piece ships with the coordinates of its tree.</p>
+      <div class="t-facts"><div><span class="lab">Species</span>European oak</div><div><span class="lab">Drying</span>2 years, outdoors</div><div><span class="lab">Origin</span>57.18° N, 14.87° E</div></div></div>
+    </div>
+    <div class="t-right" id="tright"><video class="full" id="tvid" src="media/grain.mp4" poster="media/grain.jpg" muted loop playsinline autoplay></video><span class="tag">Board 0417 · felled winter 2023</span></div>
+  </div>
+</section>
+
+<!-- MAKE -->
+<section id="make">
+  <div class="pin">
+    <div class="m-film">
+      <div class="m-clip"><video class="full" src="media/c2.mp4" muted loop playsinline autoplay></video></div>
+      <div class="m-clip"><video class="full" src="media/plane.mp4" muted loop playsinline></video></div>
+      <div class="m-clip"><video class="full" src="media/c3.mp4" muted loop playsinline></video></div>
+      <div class="m-clip"><video class="full" src="media/c4.mp4" muted loop playsinline></video></div>
+      <div class="m-clip"><video class="full" src="media/c5.mp4" muted loop playsinline></video></div>
+    </div>
+    <div class="m-over"><span class="lab">How a Söder chair is made</span></div>
+    <div class="m-band">
+      <div class="m-rail"><i id="mrail"></i><span style="left:0%;transform:none">Day 1</span><span style="left:25%">Day 3</span><span style="left:50%">Day 6</span><span style="left:75%">Day 9</span><span style="left:100%;transform:translateX(-100%)">Day 14</span></div>
+      <div class="m-day"><span class="lab">Day</span><b id="mday">01</b></div>
+      <div class="sw m-title f" id="mtitle"><div>Selecting</div><div><em>Planing</em></div><div>Shaping</div><div>Sanding</div><div><em>Joining</em></div></div>
+      <div class="m-text" id="mtext"><p>Knots, grain and colour decide which board becomes the backrest and which becomes the legs.</p><p>A hand plane leaves a surface no machine can: it catches the light like silk and feels warm.</p><p>Curves are worked with spokeshaves and card scrapers, by eye, until the edges feel inevitable.</p><p>Six grits, always with the grain, finished with a cabinet scraper and a cotton cloth.</p><p>Pegged mortise and tenon joints, then three coats of hardwax oil. No screws, no metal.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CHAIR -->
+<section id="chair">
+  <div class="pin">
+    <div class="c-back"><span class="lab">Signature piece</span><h2 class="f"><span>The</span><span><em>Söder</em></span></h2><div class="row"><p>A dining chair with one steam-bent backrest that wraps around you like an arm.</p><span class="lab">Scroll</span></div></div>
+    <div class="c-win" id="cwin"><img src="media/p-chair.jpg" id="cimg" alt="Söder chair in oiled oak"></div>
+    <div class="hs" style="left:60%;top:16%"><div class="dot"></div><div class="card"><span class="lab">Backrest</span><b>Steam-bent oak</b><p>One piece, bent over a form and left to set for a week.</p></div></div>
+    <div class="hs" style="left:22%;top:50%"><div class="dot"></div><div class="card"><span class="lab">Seat</span><b>Carved by hand</b><p>Hollowed 8 mm so you sink in, just slightly.</p></div></div>
+    <div class="hs" style="left:62%;top:52%"><div class="dot"></div><div class="card"><span class="lab">Joinery</span><b>Pegged tenons</b><p>No screws. Re-glue it in forty years and it's new again.</p></div></div>
+    <div class="c-bar" id="cbar"><div class="nm">Söder <span>From 9 400 kr · made to order in 6 weeks</span></div><div style="display:flex;align-items:center"><div class="woods" id="woods"><button class="on" style="background:#c79b62" title="Oak"></button><button style="background:#e2cfae" title="Ash"></button><button style="background:#5b3b26" title="Walnut"></button></div><button class="btn" data-save="Söder chair">Save to shortlist</button></div></div>
+  </div>
+</section>
+
+<!-- INDEX -->
+<section id="index">
+  <div class="i-head"><h2 class="f fd">The <em>collection</em></h2><div class="filters" id="filters"><button class="on" data-f="all">All pieces</button><button data-f="seat">Seating</button><button data-f="table">Tables</button><button data-f="store">Storage</button></div></div>
+  <div class="rows">
+    <div class="item" data-img="media/p-chair.jpg" data-c="seat"><span class="no">01</span><span class="nm">Söder</span><span class="c3">Dining chair</span><span class="c4">Oak, ash or walnut</span><span class="pr">9 400 kr</span><button class="sv" data-save="Söder chair">+</button></div>
+    <div class="item" data-img="media/p-table.jpg" data-c="table"><span class="no">02</span><span class="nm">Långbord</span><span class="c3">Dining table, seats 6 to 10</span><span class="c4">Oak</span><span class="pr">38 000 kr</span><button class="sv" data-save="Långbord table">+</button></div>
+    <div class="item" data-img="media/p-stool.jpg" data-c="seat"><span class="no">03</span><span class="nm">Pall</span><span class="c3">Bar stool</span><span class="c4">Ash or walnut</span><span class="pr">4 200 kr</span><button class="sv" data-save="Pall stool">+</button></div>
+    <div class="item" data-img="media/p-lounge.jpg" data-c="seat"><span class="no">04</span><span class="nm">Vila</span><span class="c3">Lounge chair, paper cord</span><span class="c4">Oak</span><span class="pr">16 800 kr</span><button class="sv" data-save="Vila lounge chair">+</button></div>
+    <div class="item" data-img="media/p-cabinet.jpg" data-c="store"><span class="no">05</span><span class="nm">Skåp</span><span class="c3">Low cabinet</span><span class="c4">Pine and oak</span><span class="pr">21 500 kr</span><button class="sv" data-save="Skåp cabinet">+</button></div>
+    <div class="item" data-img="media/p-grain.jpg" data-c="table"><span class="no">06</span><span class="nm">Rund</span><span class="c3">Round table, 110 cm</span><span class="c4">Linoleum and beech</span><span class="pr">24 900 kr</span><button class="sv" data-save="Rund table">+</button></div>
+  </div>
+</section>
+
+<!-- STUDIO -->
+<section id="studio">
+  <div class="pin">
+    <div class="clipw" id="sclip"><video class="full" id="svid" src="media/studio.mp4" poster="media/studio.jpg" muted loop playsinline autoplay></video><div class="scrim"></div></div>
+    <div class="s-in"><h2 class="f" id="sh"><span class="l"><span>Come and</span></span><span class="l"><span><em>sit on it.</em></span></span></h2>
+      <div class="s-grid"><div><span class="lab">Workshop</span>Katarina Bangata 12<br>116 39 Stockholm</div><div><span class="lab">Open</span>Thursday to Saturday<br>11:00 to 17:00</div><div><span class="lab">Commissions</span>Tables made to fit your room, from 12 weeks</div><div><span class="lab">Care</span>Free re-oiling for the first five years</div></div></div>
+  </div>
+</section>
+
+<footer>
+  <div class="news"><h3 class="f fd">Letters from<br>the <em>workshop.</em></h3><div class="fd"><p style="font-size:17px;line-height:1.6;color:var(--soft);margin-bottom:26px;max-width:40ch">Four times a year: new pieces, open-workshop dates, and which trees came in this season.</p><form class="nform" onsubmit="event.preventDefault();this.innerHTML='<span style=&quot;padding:18px 0;font-size:18px&quot;>Thank you. See you in spring.</span>'"><input type="email" required placeholder="Your email"><button>Subscribe →</button></form></div></div>
+  <div class="big">Ekdal</div>
+  <div class="legal"><span>© 2026 Ekdal Snickeri AB</span><span>Site by Strawberry</span></div>
+</footer>
+
+<script type="module">
+import Lenis from 'lenis';
+const clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x)),lerp=(a,b,t)=>a+(b-a)*t;
+const ss=(a,b,x)=>{const t=clamp((x-a)/(b-a));return t*t*(3-2*t)};
+const ease=t=>1-Math.pow(1-t,3);
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const secP=el=>{const r=el.getBoundingClientRect();return clamp(-r.top/(r.height-innerHeight))};
+const vis=el=>{const r=el.getBoundingClientRect();return r.bottom>0&&r.top<innerHeight};
+
+/* plane sequence */
+const cv=$('#cvP'),ctx=cv.getContext('2d'),N=118,imgs=[];let loaded=0,cur=0;
+for(let i=0;i<N;i++){const im=new Image();im.onload=im.onerror=()=>loaded++;im.src=`media/plane/f${String(i+1).padStart(3,'0')}.jpg`;imgs.push(im)}
+const size=()=>{const d=Math.min(devicePixelRatio,2);cv.width=innerWidth*d;cv.height=innerHeight*d};size();addEventListener('resize',size);
+function draw(p,z){const t=p*(N-1);cur+=(t-cur)*.25;const im=imgs[Math.round(cur)];if(!im||!im.naturalWidth)return;const cw=cv.width,ch=cv.height,s=Math.max(cw/im.naturalWidth,ch/im.naturalHeight)*z,w=im.naturalWidth*s,h=im.naturalHeight*s;ctx.drawImage(im,(cw-w)*.6,(ch-h)*.5,w,h)}
+
+const lenis=new Lenis({lerp:.08});lenis.stop();let shown=0;
+(function L(){shown+=(loaded/N-shown)*.08;$('#ly').textContent=Math.round(1926+shown*100);if(loaded>=N&&shown>.985){$('#ly').textContent='2026';setTimeout(go,400);return}requestAnimationFrame(L)})();
+function go(){$('#loader').classList.add('out');document.documentElement.classList.add('ready');lenis.start();const q=new URLSearchParams(location.search);if(q.has('s')){lenis.scrollTo($(q.get('s')).offsetTop+(+q.get('o')||0)*innerHeight,{immediate:true})}}
+$$('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();lenis.scrollTo(a.getAttribute('href'),{duration:2.4})}));
+
+function swapper(el){const k=[...el.children];let c=-1;return i=>{if(i===c)return;k.forEach((x,j)=>{x.classList.toggle('on',j===i);x.classList.toggle('up',j<i)});c=i}}
+const mt=swapper($('#mtitle'));const mtx=[...$('#mtext').children];const rs=$$('.m-rail span');
+const clips=$$('.m-clip'),cvids=clips.map(c=>c.querySelector('video'));const DAYS=[1,3,6,9,14];
+const hs=$$('.hs');let lastM=-1;
+
+/* shortlist */
+const saved=new Set();const toast=$('#toast');
+$$('[data-save]').forEach(b=>b.addEventListener('click',()=>{const n=b.dataset.save,on=!saved.has(n);on?saved.add(n):saved.delete(n);
+  $$(`[data-save="${n}"]`).forEach(x=>{x.classList.toggle('on',on);if(x.classList.contains('sv'))x.textContent=on?'✓':'+';else x.textContent=on?'Saved ✓':'Save to shortlist'});
+  $('#shortN').textContent=saved.size;toast.textContent=on?`${n} saved to your shortlist`:`${n} removed`;toast.classList.add('on');clearTimeout(toast._t);toast._t=setTimeout(()=>toast.classList.remove('on'),1700)}));
+$$('#woods button').forEach((b,i)=>b.addEventListener('click',()=>{$$('#woods button').forEach(x=>x.classList.toggle('on',x===b));$('#cimg').style.filter=['none','brightness(1.12) saturate(.7)','brightness(.62) saturate(1.1) contrast(1.08)'][i]}));
+$$('#filters button').forEach(b=>b.addEventListener('click',()=>{$$('#filters button').forEach(x=>x.classList.toggle('on',x===b));const f=b.dataset.f;$$('.item').forEach(it=>it.classList.toggle('hide',f!=='all'&&it.dataset.c!==f))}));
+const peek=$('#peek'),pim={};$$('.item').forEach(it=>{const src=it.dataset.img;if(!pim[src]){const im=new Image();im.src=src;peek.appendChild(im);pim[src]=im}
+  it.addEventListener('mouseenter',()=>{peek.classList.add('on');Object.values(pim).forEach(x=>x.classList.toggle('on',x===pim[src]))});it.addEventListener('mouseleave',()=>peek.classList.remove('on'))});
+let mx=0,my=0,px=0,py=0;addEventListener('pointermove',e=>{mx=e.clientX;my=e.clientY});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.2});$$('.fd').forEach(x=>io.observe(x));
+const shL=$$('#sh .l span');
+
+function raf(t){
+  lenis.raf(t);const vw=innerWidth,vh=innerHeight;
+  /* nav colour over dark sections */
+  const dark=['#make','#studio'].some(s=>{const r=$(s).getBoundingClientRect();return r.top<40&&r.bottom>40})||(()=>{const hp=secP($('#hero'));const r=$('#hero').getBoundingClientRect();return r.top<=0&&r.bottom>40&&hp>.22})();
+  $('#nav').classList.toggle('dark',dark);$('#nav').classList.toggle('solid',!dark&&scrollY>vh*.3);
+
+  /* HERO: framed film in right column → full bleed → stroke */
+  const hp=secP($('#hero'));const ex=ease(ss(.03,.26,hp));
+  const L0=vw*.46,T0=vh*.14,R0=vw*.03,B0=vh*.1;
+  $('#hframe').style.clipPath=`inset(${lerp(T0,0,ex)}px ${lerp(R0,0,ex)}px ${lerp(B0,0,ex)}px ${lerp(L0,0,ex)}px round ${lerp(6,0,ex)}px)`;
+  if(vis($('#hero')))draw(ss(.28,.96,hp),lerp(1.22,1.02,ex)+ss(.3,1,hp)*.14);
+  $('#hhead').style.opacity=1-ss(.02,.14,hp);$('#hhead').style.transform=`translateX(${-ss(.02,.2,hp)*60}px)`;$('#hmeta').style.opacity=1-ss(.02,.12,hp);
+  $('#hscrim').style.opacity=ss(.28,.38,hp);
+  const hc=ss(.32,.42,hp);$('#hcap').style.opacity=hc;$('#hcap').style.transform=`translateY(${(1-hc)*24}px)`;
+  $('#mmv').textContent=(ss(.28,.96,hp)*.1).toFixed(2);
+
+  /* TREE */
+  const tp=secP($('#tree'));$('#yrs').textContent=Math.round(ease(ss(.05,.7,tp))*100);
+  const g=ease(ss(0,.45,tp));$('#tright').style.clipPath=`inset(${lerp(18,0,g)}% ${lerp(10,0,g)}% ${lerp(18,0,g)}% ${lerp(10,0,g)}%)`;
+  $('#tvid').style.transform=`scale(${1.25-g*.2+tp*.05})`;
+
+  /* MAKE */
+  const mp=secP($('#make'));const f=mp*5;const mi=clamp(Math.floor(f),0,4);
+  clips.forEach((c,i)=>{const r=i===0?1:ss(i-.3,i+.05,f);c.style.clipPath=`inset(${(1-r)*100}% 0 0 0)`;cvids[i].style.transform=`scale(${1.2-r*.2}) translateY(${(1-r)*-6}%)`;
+    const on=vis($('#make'))&&r>0&&(i===4||ss(i+1-.3,i+1+.05,f)<1);if(on&&cvids[i].paused)cvids[i].play().catch(()=>{});if(!on&&!cvids[i].paused)cvids[i].pause()});
+  $('#mrail').style.width=mp*100+'%';$('#mday').textContent=String(Math.round(lerp(1,14,mp))).padStart(2,'0');
+  if(mi!==lastM){mt(mi);mtx.forEach((p,j)=>p.classList.toggle('on',j===mi));rs.forEach((s,j)=>s.classList.toggle('on',j===mi));lastM=mi}
+
+  /* CHAIR */
+  const cp=secP($('#chair'));const gg=ease(ss(.04,.42,cp));
+  const cw=lerp(vw*.24,vw,gg),ch=lerp(vh*.44,vh,gg);
+  $('#cwin').style.clipPath=`inset(${(vh-ch)/2}px ${(vw-cw)/2}px ${(vh-ch)/2}px ${(vw-cw)/2}px round ${lerp(240,0,gg)}px)`;
+  $('#cimg').style.transform=`scale(${lerp(1.45,1.02,gg)+ss(.42,1,cp)*.06})`;
+  hs.forEach((h,i)=>h.classList.toggle('on',cp>.48+i*.08&&cp<.995));
+  $('#cbar').classList.toggle('on',cp>.7);
+
+  /* STUDIO */
+  const sp=secP($('#studio'));const so=ease(ss(0,.4,sp));
+  $('#sclip').style.clipPath=`inset(${lerp(8,0,so)}vh ${lerp(8,0,so)}vw ${lerp(8,0,so)}vh ${lerp(8,0,so)}vw round ${lerp(8,0,so)}px)`;
+  $('#svid').style.transform=`scale(${1.2-sp*.2})`;
+  shL.forEach((s,i)=>{const k=ss(.2+i*.06,.45+i*.06,sp);s.style.transform=`translateY(${(1-k)*110}%)`});
+
+  px+=(mx-px)*.14;py+=(my-py)*.14;peek.style.transform=`translate(${px-160}px,${py-205}px) rotate(${(mx-px)*.04}deg)`;
+  requestAnimationFrame(raf);
+}
+requestAnimationFrame(raf);
+</script>
+</body>
+</html>

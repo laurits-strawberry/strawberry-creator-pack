@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>OSTRA · Type 1</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@200..700&family=JetBrains+Mono:wght@400;500&display=block" rel="stylesheet">
+<link rel="stylesheet" href="../_engine/obj3d.css">
+<script type="importmap">{"imports":{"three":"../3d/lib/three.module.js"}}</script>
+<style>
+body{background:#0c0c0d;color:#f1efe9;font-family:"Inter Tight",sans-serif}
+body[data-theme=light]{color:#131313}
+.mono{font-family:"JetBrains Mono",monospace;font-weight:500;letter-spacing:.14em;text-transform:uppercase;font-size:16px;opacity:.75}
+.hd{position:absolute;left:80px;right:80px;top:56px;display:flex;justify-content:space-between}
+h2{font-weight:300;letter-spacing:-.045em;line-height:.95}
+.p{font-size:29px;line-height:1.42;font-weight:300;opacity:.8}
+.p b{font-weight:500;opacity:1}
+.giant{position:absolute;left:0;right:0;text-align:center;font-weight:200;letter-spacing:.12em;line-height:.8;white-space:nowrap;padding-left:.12em}
+.stat b{display:block;font-size:92px;font-weight:200;letter-spacing:-.04em;line-height:1}
+.stat span{display:block;margin-top:12px}
+.line{height:1px;background:currentColor;opacity:.25}
+.sw{width:22px;height:22px;border-radius:50%;display:inline-block}
+</style></head><body>
+
+<div class="stage">
+
+<!-- 1 COVER -->
+<section class="slide" data-x="0" data-y="-0.14" data-s="1.28" data-rx="6" data-ry="38" data-variant="VAR0" data-bg="#0c0c0d">
+  <div class="bk"><p class="giant" style="top:210px;font-size:400px;color:#1b1b1d">OSTRA</p></div>
+  <div class="hd e"><span class="mono">Ostra Automobile</span><span class="mono">Type 1 · Reveal</span><span class="mono">Göteborg 2027</span></div>
+  <div class="e" style="--d:.15s;position:absolute;left:0;right:0;bottom:84px;text-align:center"><p style="font-size:38px;font-weight:300;letter-spacing:.02em">Type 1</p><p class="mono" style="margin-top:14px">The electric grand tourer</p></div>
+</section>
+
+<!-- 2 SIDE -->
+<section class="slide" data-x="0.02" data-y="-0.22" data-s="1.2" data-rx="0" data-ry="90" data-bg="#0c0c0d">
+  <div class="hd e"><span class="mono">01 / Profile</span><span class="mono">Ostra</span></div>
+  <h2 class="e" style="--d:.05s;position:absolute;left:80px;top:170px;font-size:112px;width:1300px">A grand tourer for people<br>who still like to drive.</h2>
+  <div style="position:absolute;left:80px;right:80px;bottom:80px;display:grid;grid-template-columns:repeat(4,1fr)">
+    <div class="stat e" style="--d:.12s"><b>2.9 s</b><span class="mono">0 to 100 km/h</span></div>
+    <div class="stat e" style="--d:.18s"><b>610 km</b><span class="mono">WLTP range</span></div>
+    <div class="stat e" style="--d:.24s"><b>480 kW</b><span class="mono">Two motors</span></div>
+    <div class="stat e" style="--d:.3s"><b>1,690 kg</b><span class="mono">Kerb weight</span></div>
+  </div>
+</section>
+
+<!-- 3 FRONT -->
+<section class="slide" data-x="0.36" data-y="-0.1" data-s="1.55" data-rx="4" data-ry="-8" data-bg="#141416">
+  <div class="hd e"><span class="mono">02 / Aerodynamics</span><span class="mono">Ostra</span></div>
+  <div style="position:absolute;left:80px;top:250px;width:640px">
+    <p class="mono e">Drag coefficient</p>
+    <p class="e" style="--d:.08s;font-size:260px;font-weight:200;letter-spacing:-.05em;line-height:1;margin-top:10px">0.21</p>
+    <p class="p e" style="--d:.16s;margin-top:30px">The nose was shaped in 1,400 hours of wind tunnel time. <b>Every line you see is there to move air,</b> not to look fast.</p>
+  </div>
+</section>
+
+<!-- 4 EXPLODE -->
+<section class="slide" data-x="0.14" data-y="-0.14" data-s="0.82" data-rx="22" data-ry="36" data-explode="1" data-bg="#0c0c0d" data-shadow="0.4">
+  <div class="hd e"><span class="mono">03 / Construction</span><span class="mono">Ostra</span></div>
+  <h2 class="e" style="--d:.05s;position:absolute;left:80px;top:150px;font-size:76px;width:900px">Built around the battery,<br>not on top of it.</h2>
+  <p class="p e" style="--d:.15s;position:absolute;right:80px;top:170px;width:520px;text-align:right">A structural pack forms the floor. The body, the cabin and both motors bolt directly to it, <b>cutting 212 parts and 40 kg.</b></p>
+</section>
+
+<!-- 5 TOP -->
+<section class="slide" data-x="-0.38" data-y="0" data-s="1.15" data-rx="90" data-ry="90" data-rz="0" data-bg="#e9e6e0" data-theme="light" data-shadow="0">
+  <div class="hd e"><span class="mono">04 / Cabin</span><span class="mono">Ostra</span></div>
+  <div style="position:absolute;right:80px;top:230px;width:720px">
+    <h2 class="e" style="font-size:112px">Four seats.<br>One glass roof.</h2>
+    <p class="p e" style="--d:.1s;margin-top:40px">Real rear seats for real adults on a four-hour drive. The roof is a single 2.4 m² pane that darkens on demand.</p>
+    <div class="e" style="--d:.18s;margin-top:50px"><div class="line"></div><div style="display:flex;justify-content:space-between;padding:22px 0;font-size:27px"><span style="opacity:.6">Boot + frunk</span><span>490 L</span></div><div class="line"></div><div style="display:flex;justify-content:space-between;padding:22px 0;font-size:27px"><span style="opacity:.6">Rear legroom</span><span>920 mm</span></div><div class="line"></div></div>
+  </div>
+</section>
+
+<!-- 6 REAR -->
+<section class="slide" data-x="0.3" data-y="-0.12" data-s="1.2" data-rx="6" data-ry="218" data-bg="#0c0c0d">
+  <div class="hd e"><span class="mono">05 / Charging</span><span class="mono">Ostra</span></div>
+  <div style="position:absolute;left:80px;top:250px;width:620px">
+    <p class="mono e">10 to 80%</p>
+    <p class="e" style="--d:.08s;font-size:260px;font-weight:200;letter-spacing:-.05em;line-height:1;margin-top:10px">16 min</p>
+    <p class="p e" style="--d:.16s;margin-top:30px">An 800-volt system means a coffee stop, not a lunch break. <b>Adds 400 km while you order.</b></p>
+  </div>
+</section>
+
+<!-- 7 PAINT 1 -->
+<section class="slide" data-x="0" data-y="-0.12" data-s="1.2" data-rx="8" data-ry="60" data-spin="10" data-variant="VAR0" data-bg="#1c0a0c">
+  <div class="bk"><p class="giant" style="top:250px;font-size:330px;color:rgba(255,255,255,.05)">PAINT</p></div>
+  <div class="hd e"><span class="mono">06 / Paint</span><span class="mono">1 of 3</span></div>
+  <div class="e" style="--d:.1s;position:absolute;left:80px;bottom:80px"><p class="mono">Finish</p><p class="pn" style="font-size:66px;font-weight:300;letter-spacing:-.03em;margin-top:12px">Carmine Candy</p></div>
+  <div class="e" style="--d:.15s;position:absolute;right:80px;bottom:96px;display:flex;gap:20px;align-items:center"><i class="sw" style="background:#8a0f16;outline:1px solid #fff;outline-offset:6px"></i><i class="sw" style="background:#e9e6e0"></i><i class="sw" style="background:#3a3b3f"></i></div>
+</section>
+
+<!-- 8 PAINT 2 -->
+<section class="slide" data-x="0" data-y="-0.12" data-s="1.2" data-rx="8" data-ry="200" data-spin="10" data-variant="VAR1" data-bg="#dcd8d2" data-theme="light">
+  <div class="bk"><p class="giant" style="top:250px;font-size:330px;color:rgba(0,0,0,.05)">PAINT</p></div>
+  <div class="hd e"><span class="mono">06 / Paint</span><span class="mono">2 of 3</span></div>
+  <div class="e" style="--d:.1s;position:absolute;left:80px;bottom:80px"><p class="mono">Finish</p><p class="pn" style="font-size:66px;font-weight:300;letter-spacing:-.03em;margin-top:12px">Pearly Swirly</p></div>
+  <div class="e" style="--d:.15s;position:absolute;right:80px;bottom:96px;display:flex;gap:20px;align-items:center"><i class="sw" style="background:#8a0f16"></i><i class="sw" style="background:#f4f1ec;outline:1px solid #111;outline-offset:6px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.2)"></i><i class="sw" style="background:#3a3b3f"></i></div>
+</section>
+
+<!-- 9 PAINT 3 -->
+<section class="slide" data-x="0" data-y="-0.12" data-s="1.2" data-rx="8" data-ry="340" data-spin="10" data-variant="VAR2" data-bg="#18191b">
+  <div class="bk"><p class="giant" style="top:250px;font-size:330px;color:rgba(255,255,255,.04)">PAINT</p></div>
+  <div class="hd e"><span class="mono">06 / Paint</span><span class="mono">3 of 3</span></div>
+  <div class="e" style="--d:.1s;position:absolute;left:80px;bottom:80px"><p class="mono">Finish</p><p class="pn" style="font-size:66px;font-weight:300;letter-spacing:-.03em;margin-top:12px">Torched Graphite</p></div>
+  <div class="e" style="--d:.15s;position:absolute;right:80px;bottom:96px;display:flex;gap:20px;align-items:center"><i class="sw" style="background:#8a0f16"></i><i class="sw" style="background:#e9e6e0"></i><i class="sw" style="background:#3a3b3f;outline:1px solid #fff;outline-offset:6px"></i></div>
+</section>
+
+<!-- 10 CLOSE -->
+<section class="slide" data-x="0" data-y="0.02" data-s="0.95" data-rx="4" data-ry="90" data-spin="0" data-bg="#0c0c0d">
+  <div class="e" style="position:absolute;left:0;right:0;top:170px;text-align:center"><p class="mono">Reservations open 12.01.2027</p><h2 style="font-size:130px;margin-top:30px">From €118,000</h2></div>
+  <div class="e" style="--d:.15s;position:absolute;left:0;right:0;bottom:80px;text-align:center"></div>
+</section>
+
+</div>
+<script type="module">
+import {start} from '../_engine/obj3d.js';
+await start({model:'../3d/models/CarConcept.glb',exposure:1.0,env:1.1,dur:1700,explodeDist:0.9});
+</script>
+</body></html>

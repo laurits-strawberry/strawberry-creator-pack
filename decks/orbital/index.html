@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>ORBITAL · Earth, every hour</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@200..700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=block" rel="stylesheet">
+<link rel="stylesheet" href="../_engine/obj3d.css">
+<script type="importmap">{"imports":{"three":"../3d/lib/three.module.js"}}</script>
+<style>
+body{background:#05070b;color:#eef1f5;font-family:"Inter Tight",sans-serif}
+#stars{position:fixed;inset:-5%;z-index:0;pointer-events:none;background-image:radial-gradient(1px 1px at 20% 30%,#fff9,transparent),radial-gradient(1px 1px at 70% 80%,#fff8,transparent),radial-gradient(1.5px 1.5px at 40% 60%,#fffc,transparent),radial-gradient(1px 1px at 85% 20%,#fff7,transparent),radial-gradient(1px 1px at 10% 85%,#fff8,transparent),radial-gradient(1.2px 1.2px at 55% 15%,#fffa,transparent),radial-gradient(1px 1px at 30% 90%,#fff6,transparent),radial-gradient(1px 1px at 92% 55%,#fff9,transparent);background-size:420px 420px;transition:transform 1.7s cubic-bezier(.65,0,.35,1);opacity:.55}
+.mono{font-family:"JetBrains Mono",monospace;font-weight:500;letter-spacing:.14em;text-transform:uppercase;font-size:16px;opacity:.7}
+.hd{position:absolute;left:80px;right:80px;top:56px;display:flex;justify-content:space-between}
+h2{font-weight:300;letter-spacing:-.045em;line-height:.95}
+.serif{font-family:"Instrument Serif",serif;font-style:italic;font-weight:400;letter-spacing:-.01em}
+.p{font-size:29px;line-height:1.42;font-weight:300;opacity:.82}
+.p b{font-weight:500;opacity:1}
+.acc{color:#7fd3ff}
+.pin{position:absolute;display:flex;align-items:center;gap:16px;font-size:22px}
+.pin i{width:14px;height:14px;border-radius:50%;background:#7fd3ff;box-shadow:0 0 0 6px rgba(127,211,255,.18),0 0 24px #7fd3ff}
+.row{display:flex;justify-content:space-between;padding:22px 0;border-top:1px solid rgba(238,241,245,.18);font-size:27px}
+.row span:first-child{opacity:.6}
+</style></head><body>
+<div id="stars"></div>
+<div class="stage">
+
+<!-- 1 COVER: earth far, center -->
+<section class="slide" data-x="0" data-y="0.1" data-s="0.92" data-rx="18" data-ry="-20" data-bg="#05070b">
+  <div class="hd e"><span class="mono">Orbital®</span><span class="mono">Company overview</span><span class="mono">2026</span></div>
+  <div class="e" style="--d:.15s;position:absolute;left:0;right:0;bottom:84px;text-align:center"><h2 style="font-size:96px">Earth, <span class="serif">every hour.</span></h2><p class="mono" style="margin-top:22px">A constellation of 48 imaging satellites</p></div>
+</section>
+
+<!-- 2 Big, left, Europe -->
+<section class="slide" data-x="-0.78" data-y="0" data-s="2.0" data-rx="38" data-ry="-15" data-bg="#05070b">
+  <div class="hd e"><span class="mono">01 / What we do</span><span class="mono">Orbital®</span></div>
+  <div style="position:absolute;right:80px;top:250px;width:760px">
+    <p class="mono acc e">The problem</p>
+    <h2 class="e" style="--d:.08s;font-size:100px;margin-top:28px">Most of the planet is photographed <span class="serif">once a week.</span></h2>
+    <p class="p e" style="--d:.16s;margin-top:40px">A flood, a wildfire or a failing harvest can change everything in six hours. <b>We revisit every point on land 24 times a day.</b></p>
+  </div>
+</section>
+
+<!-- 3 Americas, right -->
+<section class="slide" data-x="0.5" data-y="0" data-s="1.7" data-rx="12" data-ry="75" data-bg="#05070b">
+  <div class="hd e"><span class="mono">02 / Coverage</span><span class="mono">Orbital®</span></div>
+  <div style="position:absolute;left:80px;top:260px;width:700px">
+    <p class="e" style="font-size:300px;font-weight:200;letter-spacing:-.06em;line-height:.9">24×</p>
+    <p class="p e" style="--d:.12s;margin-top:30px;width:600px">daily revisit rate over every landmass, at 50 cm resolution. The nearest competitor manages <b>twice.</b></p>
+  </div>
+</section>
+
+<!-- 4 Close-up zoom, crop, Africa -->
+<section class="slide" data-x="0.25" data-y="-0.45" data-s="2.7" data-rx="-5" data-ry="-20" data-bg="#05070b">
+  <div class="hd e"><span class="mono">03 / Use case</span><span class="mono">Orbital®</span></div>
+  <div class="e" style="--d:.1s;position:absolute;left:80px;top:170px;width:820px;background:rgba(5,7,11,.72);backdrop-filter:blur(6px);padding:44px 48px;border:1px solid rgba(255,255,255,.1)">
+    <p class="mono acc">Agriculture</p>
+    <p style="font-size:54px;font-weight:300;letter-spacing:-.03em;line-height:1.05;margin-top:22px">Crop stress spotted <span class="serif">nine days</span> before it shows up on the ground.</p>
+    <p class="p" style="font-size:26px;margin-top:22px">Used by 140 insurers and grain traders across 31 countries.</p>
+  </div>
+</section>
+
+<!-- 5 Night side -->
+<section class="slide" data-x="-0.5" data-y="0.02" data-s="1.5" data-rx="20" data-ry="160" data-bg="#020305">
+  <div class="hd e"><span class="mono">04 / Night</span><span class="mono">Orbital®</span></div>
+  <div style="position:absolute;right:80px;top:260px;width:680px">
+    <h2 class="e" style="font-size:110px">We see <span class="serif">through the dark.</span></h2>
+    <p class="p e" style="--d:.12s;margin-top:40px">Synthetic aperture radar on every third satellite images through cloud, smoke and night. <b>No blind hours.</b></p>
+  </div>
+</section>
+
+<!-- 6 small top-right + table -->
+<section class="slide" data-x="0.55" data-y="0.32" data-s="0.7" data-rx="25" data-ry="-60" data-bg="#070a10">
+  <div class="hd e"><span class="mono">05 / Business</span><span class="mono">Orbital®</span></div>
+  <div style="position:absolute;left:80px;top:230px;width:900px">
+    <h2 class="e" style="font-size:110px">The business.</h2>
+    <div class="e" style="--d:.12s;margin-top:60px">
+      <div class="row"><span>Annual recurring revenue</span><span>$62M</span></div>
+      <div class="row"><span>Growth, year on year</span><span>+148%</span></div>
+      <div class="row"><span>Customers</span><span>410</span></div>
+      <div class="row"><span>Satellites in orbit</span><span>48 of 96</span></div>
+      <div class="row" style="border-bottom:1px solid rgba(238,241,245,.18)"><span>Data delivered per day</span><span>31 TB</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 7 close: center, big, spinning -->
+<section class="slide" data-x="0" data-y="0.08" data-s="0.95" data-rx="20" data-ry="-100" data-spin="6" data-bg="#05070b">
+  <div class="e" style="position:absolute;left:0;right:0;top:120px;text-align:center"><p class="mono">Orbital® · orbital.example</p></div>
+  <div class="e" style="--d:.12s;position:absolute;left:0;right:0;bottom:80px;text-align:center"><h2 style="font-size:72px">Know what changed. <span class="serif">Before anyone else.</span></h2></div>
+</section>
+
+</div>
+<script type="module">
+import {start} from '../_engine/obj3d.js';
+let clouds,sunU,KEY,RIM;const sunDir=[-0.42,0.57,0.71];
+await start({noExplode:true,noShadow:true,exposure:1.05,env:0.15,keyLight:3,dur:1800,fov:26,
+  build:async(THREE,renderer,ctx)=>{KEY=ctx.key;RIM=ctx.rim;RIM.intensity=0.0;ctx.scene.environment=null;ctx.scene.add(new THREE.AmbientLight(0x6f86a8,0.06));sunU={value:new THREE.Vector3(...sunDir).normalize()};
+    const L=new THREE.TextureLoader(),ld=u=>new Promise(r=>L.load(u,r));
+    const [day,nrm,cl,lights,spec]=await Promise.all(['earth_atmos_4096.jpg','earth_normal_2048.jpg','earth_clouds_2048.png','earth_lights_2048.png','earth_specular_2048.jpg'].map(f=>ld('../3d/tex/'+f)));
+    [day,lights,cl].forEach(t=>t.colorSpace=THREE.SRGBColorSpace);day.anisotropy=8;
+    const g=new THREE.Group();
+    const earth=new THREE.Mesh(new THREE.SphereGeometry(1,128,128),new THREE.MeshStandardMaterial({map:day,normalMap:nrm,normalScale:new THREE.Vector2(0.35,0.35),roughnessMap:spec,roughness:0.9,metalness:0,emissiveMap:lights,emissive:new THREE.Color(0xffc27a),emissiveIntensity:1.1}));
+    // emissive only on night side
+    earth.material.onBeforeCompile=sh=>{sh.uniforms.sunDir=sunU;sh.fragmentShader='uniform vec3 sunDir;\n'+sh.fragmentShader.replace('#include <emissivemap_fragment>','#include <emissivemap_fragment>\n float nd=dot(normal,normalize(sunDir));\n totalEmissiveRadiance*=smoothstep(0.12,-0.3,nd);')};
+    clouds=new THREE.Mesh(new THREE.SphereGeometry(1.012,96,96),new THREE.MeshStandardMaterial({map:cl,transparent:true,opacity:.85,depthWrite:false}));
+    const atm=new THREE.Mesh(new THREE.SphereGeometry(1.06,96,96),new THREE.ShaderMaterial({transparent:true,side:THREE.BackSide,blending:THREE.AdditiveBlending,depthWrite:false,
+      vertexShader:'varying vec3 vN;varying vec3 vP;void main(){vN=normalize(normalMatrix*normal);vec4 p=modelViewMatrix*vec4(position,1.);vP=p.xyz;gl_Position=projectionMatrix*p;}',
+      fragmentShader:'varying vec3 vN;varying vec3 vP;void main(){float i=pow(0.72-dot(vN,normalize(-vP))*-1.,5.);gl_FragColor=vec4(0.35,0.65,1.0,1.)*clamp(i,0.,1.)*1.4;}'}));
+    const rim=new THREE.Mesh(new THREE.SphereGeometry(1.015,96,96),new THREE.ShaderMaterial({transparent:true,blending:THREE.AdditiveBlending,depthWrite:false,
+      vertexShader:'varying vec3 vN;varying vec3 vP;void main(){vN=normalize(normalMatrix*normal);vec4 p=modelViewMatrix*vec4(position,1.);vP=p.xyz;gl_Position=projectionMatrix*p;}',
+      fragmentShader:'varying vec3 vN;varying vec3 vP;void main(){float f=1.-max(dot(vN,normalize(-vP)),0.);gl_FragColor=vec4(0.45,0.72,1.,1.)*pow(f,3.)*0.9;}'}));
+    g.add(earth,clouds,rim,atm);return g;},
+  tick:(T,dt,i)=>{if(clouds)clouds.rotation.y+=dt*0.012;if(!KEY)return;const SUNS=[[-0.42,0.57,0.71],[0.55,0.45,0.7],[-0.6,0.4,0.7],[-0.3,0.6,0.75],[0.95,0.25,-0.2],[-0.5,0.5,0.7],[-0.62,0.45,0.64]];const tgt=SUNS[i]||sunDir;const c=KEY.position.clone().normalize();c.lerp(new KEY.position.constructor(...tgt).normalize(),Math.min(1,dt*1.6)).normalize();KEY.position.copy(c).multiplyScalar(7);sunU.value.copy(c);}
+});
+document.addEventListener('slide',e=>{document.getElementById('stars').style.transform=`translate(${-e.detail.index*3}%,${(e.detail.index%2?1:-1)*1.5}%)`});
+</script>
+</body></html>

@@ -1,0 +1,32 @@
+/* Strawberry deck engine: 1920x1080 slides. Works without JS (print/PDF) and as an animated web deck with JS. */
+@page{size:1920px 1080px;margin:0}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#000}
+.slide{position:relative;width:1920px;height:1080px;overflow:hidden;page-break-after:always;break-after:page}
+.slide:last-child{page-break-after:auto;break-after:auto}
+img,video{display:block}
+/* ---------- screen deck mode (JS adds html.deckmode) ---------- */
+html.deckmode,html.deckmode body{width:100%;height:100%;overflow:hidden}
+html.deckmode .deck{position:fixed;left:50%;top:50%;width:1920px;height:1080px;transform-origin:0 0}
+html.deckmode .slide{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .9s cubic-bezier(.19,1,.22,1),visibility .9s,transform 1.1s cubic-bezier(.19,1,.22,1),filter .9s;transform:scale(1.03);filter:blur(6px)}
+html.deckmode .slide.on{opacity:1;visibility:visible;transform:none;filter:none;z-index:2}
+html.deckmode .slide.past{transform:scale(.97)}
+/* element entrances: add data-a="up|fade|left|right|zoom|mask" and optional style="--d:.2s" */
+html.deckmode .slide [data-a]{transition:opacity 1s cubic-bezier(.19,1,.22,1) var(--d,0s),transform 1.2s cubic-bezier(.19,1,.22,1) var(--d,0s),clip-path 1.2s cubic-bezier(.19,1,.22,1) var(--d,0s)}
+html.deckmode .slide:not(.on) [data-a]{opacity:0}
+html.deckmode .slide:not(.on) [data-a="up"]{transform:translateY(60px)}
+html.deckmode .slide:not(.on) [data-a="left"]{transform:translateX(-80px)}
+html.deckmode .slide:not(.on) [data-a="right"]{transform:translateX(80px)}
+html.deckmode .slide:not(.on) [data-a="zoom"]{transform:scale(.9)}
+html.deckmode .slide:not(.on) [data-a="mask"]{opacity:1;clip-path:inset(0 0 100% 0)}
+html.deckmode .slide.on [data-a="mask"]{clip-path:inset(0 0 0 0)}
+html.deckmode .slide:not(.on) [data-a="grow"]{transform:scaleY(0);transform-origin:bottom}
+html.deckmode .slide:not(.on) [data-a="growx"]{transform:scaleX(0);transform-origin:left}
+/* ui */
+.deck-ui{display:none}
+html.deckmode .deck-ui{display:block;position:fixed;left:0;right:0;bottom:0;z-index:50;pointer-events:none;font:500 12px/1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.08em;color:rgba(255,255,255,.7);mix-blend-mode:difference}
+.deck-ui .bar{position:absolute;left:0;bottom:0;height:3px;background:#fff;width:0;transition:width .8s cubic-bezier(.19,1,.22,1)}
+.deck-ui .n{position:absolute;right:18px;bottom:14px}
+.deck-ui .h{position:absolute;left:18px;bottom:14px;opacity:.7;transition:opacity 1s}
+html.deckmode .deck-ui.idle .h{opacity:0}
+@media print{html.deckmode .deck{position:static;transform:none}html.deckmode .slide{position:relative;opacity:1;visibility:visible;transform:none;filter:none}.deck-ui{display:none!important}html.deckmode .slide [data-a]{opacity:1!important;transform:none!important;clip-path:none!important}}

@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pipeline · Live sales dashboard built by Strawberry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0b0c0e;--p:#131418;--p2:#1a1c21;--line:#24262d;--t:#eceef2;--m:#8b8f99;--d:#5b5f69;--red:#ff4d5e;--grn:#3ddc97;--amb:#ffb547;--blu:#6ea8ff}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--t);font-family:"Inter Tight",system-ui,sans-serif;-webkit-font-smoothing:antialiased;min-height:100vh}
+.mono{font-family:"JetBrains Mono",monospace}
+.wrap{max-width:1560px;margin:0 auto;padding:22px 28px 40px}
+header{display:flex;align-items:center;gap:18px;margin-bottom:22px}
+.logo{width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,#ff6b6b,#ff2d55);display:grid;place-items:center;font-weight:700;font-size:15px}
+h1{font-size:19px;font-weight:600;letter-spacing:-.01em}
+.sub{color:var(--m);font-size:13px}
+.live{display:flex;align-items:center;gap:8px;margin-left:auto;font-size:12px;color:var(--m);border:1px solid var(--line);padding:7px 12px;border-radius:999px}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--grn);box-shadow:0 0 0 0 rgba(61,220,151,.6);animation:pulse 1.8s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 8px rgba(61,220,151,0)}100%{box-shadow:0 0 0 0 rgba(61,220,151,0)}}
+.tabs{display:flex;gap:4px;background:var(--p);border:1px solid var(--line);border-radius:10px;padding:3px}
+.tabs span{font-size:12.5px;color:var(--m);padding:6px 12px;border-radius:7px}.tabs span.on{background:var(--p2);color:var(--t)}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}
+.card{background:var(--p);border:1px solid var(--line);border-radius:14px;padding:18px 20px;position:relative;overflow:hidden;opacity:0;transform:translateY(14px);animation:in .8s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes in{to{opacity:1;transform:none}}
+.lab{font-size:12px;color:var(--m);display:flex;justify-content:space-between;align-items:center}
+.kpi{font-size:38px;font-weight:600;letter-spacing:-.03em;margin-top:10px;font-variant-numeric:tabular-nums}
+.delta{font-size:12px;margin-top:6px;color:var(--grn)}.delta.neg{color:var(--red)}
+.spark{position:absolute;right:16px;bottom:14px;width:120px;height:40px}
+.span3{grid-column:span 3}.span4{grid-column:span 4}.span5{grid-column:span 5}.span7{grid-column:span 7}.span8{grid-column:span 8}.span12{grid-column:span 12}
+.chart{height:260px;margin-top:14px;position:relative}
+.chart svg{width:100%;height:100%;overflow:visible}
+.legend{display:flex;gap:16px;font-size:12px;color:var(--m)}.legend i{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:6px}
+/* board */
+.board{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:14px}
+.col{background:var(--bg);border:1px solid var(--line);border-radius:11px;padding:10px;min-height:330px}
+.col h4{font-size:12px;font-weight:500;color:var(--m);display:flex;justify-content:space-between;margin-bottom:10px}
+.col h4 b{color:var(--t);font-weight:600}
+.deal{background:var(--p2);border:1px solid var(--line);border-radius:9px;padding:10px 11px;margin-bottom:8px;font-size:12.5px;transition:transform .6s cubic-bezier(.2,.8,.2,1),box-shadow .6s,border-color .6s}
+.deal .n{font-weight:600;font-size:13px}.deal .v{color:var(--m);margin-top:3px;display:flex;justify-content:space-between}
+.deal .bar{height:3px;border-radius:2px;background:var(--line);margin-top:8px;overflow:hidden}.deal .bar i{display:block;height:100%;background:var(--blu)}
+.deal.fly{position:fixed;z-index:50;box-shadow:0 20px 50px rgba(0,0,0,.6);border-color:var(--red)}
+.deal.new{animation:glow 2.4s}@keyframes glow{0%{border-color:var(--red);box-shadow:0 0 0 3px rgba(255,77,94,.25)}100%{}}
+/* feed */
+.feed{margin-top:12px;display:flex;flex-direction:column;gap:2px;max-height:330px;overflow:hidden}
+.ev{display:flex;gap:11px;padding:10px 4px;border-bottom:1px solid var(--line);font-size:13px;line-height:1.4;animation:evin .6s cubic-bezier(.2,.8,.2,1)}
+@keyframes evin{from{opacity:0;transform:translateY(-10px)}}
+.ev .ic{flex:0 0 26px;height:26px;border-radius:7px;display:grid;place-items:center;font-size:12px;background:var(--p2);border:1px solid var(--line)}
+.ev .tm{margin-left:auto;color:var(--d);font-size:11px;white-space:nowrap}
+.ev b{font-weight:600}
+.sb{color:var(--red)}
+/* leaderboard */
+.rep{display:grid;grid-template-columns:28px 1fr 90px 60px;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);font-size:13px}
+.av{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:600;color:#111}
+.rb{height:6px;background:var(--line);border-radius:3px;overflow:hidden}.rb i{display:block;height:100%;border-radius:3px;background:linear-gradient(90deg,#ff6b6b,#ff2d55);width:0;transition:width 1.6s cubic-bezier(.2,.8,.2,1)}
+/* actions */
+.act{display:flex;gap:12px;align-items:flex-start;padding:11px 0;border-bottom:1px solid var(--line);font-size:13px;line-height:1.45}
+.act .chk{flex:0 0 18px;height:18px;border-radius:5px;border:1.5px solid var(--d);margin-top:1px;transition:.3s}
+.act.done .chk{background:var(--grn);border-color:var(--grn)}.act.done .tx{color:var(--m);text-decoration:line-through}
+.pill{font-size:11px;padding:2px 7px;border-radius:999px;background:rgba(255,77,94,.12);color:var(--red);margin-left:6px}
+.donut{display:flex;align-items:center;gap:22px;margin-top:12px}
+.foot{margin-top:18px;color:var(--d);font-size:11.5px;text-align:center}
+@media(max-width:1100px){.span3,.span4,.span5,.span7,.span8{grid-column:span 12}.board{grid-template-columns:repeat(2,1fr)}}
+</style></head><body><div class="wrap">
+<header>
+  <div class="logo">N</div>
+  <div><h1>Nordlys · Revenue</h1><div class="sub">Q4 pipeline, updated by Strawberry from Gmail, calendar and call notes</div></div>
+  <div class="tabs" style="margin-left:36px"><span class="on">Pipeline</span><span>Accounts</span><span>Forecast</span><span>Team</span></div>
+  <div class="live"><span class="dot"></span><span id="clock" class="mono">Live</span></div>
+</header>
+
+<div class="grid">
+  <div class="card span3" style="animation-delay:.05s"><div class="lab">Open pipeline <span class="mono">Q4</span></div><div class="kpi" data-count="2841000" data-fmt="eur">€0</div><div class="delta">▲ 18.4% vs last quarter</div><svg class="spark" viewBox="0 0 120 40"><path d="M0 34 L15 30 L30 31 L45 24 L60 26 L75 18 L90 15 L105 9 L120 5" fill="none" stroke="#3ddc97" stroke-width="2"/></svg></div>
+  <div class="card span3" style="animation-delay:.12s"><div class="lab">Closed won <span class="mono">QTD</span></div><div class="kpi" data-count="684500" data-fmt="eur" id="won">€0</div><div class="delta">▲ 73% of target</div><svg class="spark" viewBox="0 0 120 40"><path d="M0 36 L20 33 L40 28 L60 25 L80 17 L100 12 L120 8" fill="none" stroke="#3ddc97" stroke-width="2"/></svg></div>
+  <div class="card span3" style="animation-delay:.19s"><div class="lab">Win rate <span class="mono">90d</span></div><div class="kpi" data-count="31.6" data-fmt="pct">0%</div><div class="delta">▲ 4.2 pts</div><svg class="spark" viewBox="0 0 120 40"><path d="M0 30 L20 28 L40 29 L60 22 L80 20 L100 16 L120 14" fill="none" stroke="#3ddc97" stroke-width="2"/></svg></div>
+  <div class="card span3" style="animation-delay:.26s"><div class="lab">Follow-ups sent today <span class="mono">by Strawberry</span></div><div class="kpi" id="fu" data-count="47">0</div><div class="delta">0 overdue · avg reply 3h 12m</div><svg class="spark" viewBox="0 0 120 40"><path d="M0 38 L20 30 L40 32 L60 20 L80 22 L100 10 L120 6" fill="none" stroke="#ff4d5e" stroke-width="2"/></svg></div>
+
+  <div class="card span8" style="animation-delay:.33s">
+    <div class="lab"><span>Revenue vs target</span><span class="legend"><span><i style="background:#ff4d5e"></i>Closed</span><span><i style="background:#6ea8ff"></i>Weighted forecast</span><span><i style="background:#5b5f69"></i>Target</span></span></div>
+    <div class="chart"><svg id="rev" viewBox="0 0 1000 260" preserveAspectRatio="none"></svg></div>
+  </div>
+  <div class="card span4" style="animation-delay:.4s">
+    <div class="lab">Where deals come from</div>
+    <div class="donut"><svg width="170" height="170" viewBox="0 0 42 42" id="donut"></svg>
+      <div id="dleg" style="font-size:13px;line-height:2"></div></div>
+    <div class="lab" style="margin-top:14px">Strawberry sourced <span class="mono" style="color:var(--t)">38% of new pipeline</span></div>
+  </div>
+
+  <div class="card span8" style="animation-delay:.47s">
+    <div class="lab"><span>Deal board</span><span class="mono" id="boardsum">42 open deals</span></div>
+    <div class="board" id="board"></div>
+  </div>
+  <div class="card span4" style="animation-delay:.54s">
+    <div class="lab"><span>Live activity</span><span class="mono sb">● Strawberry</span></div>
+    <div class="feed" id="feed"></div>
+  </div>
+
+  <div class="card span5" style="animation-delay:.6s">
+    <div class="lab">Team leaderboard <span class="mono">closed won, QTD</span></div>
+    <div id="reps" style="margin-top:8px"></div>
+  </div>
+  <div class="card span7" style="animation-delay:.66s">
+    <div class="lab"><span>Next best actions</span><span class="mono">suggested by Strawberry, ranked by € at stake</span></div>
+    <div id="acts" style="margin-top:6px"></div>
+  </div>
+</div>
+
+</div>
+<script>
+const fmt=(v,f)=>f==='eur'?'€'+(v>=1e6?(v/1e6).toFixed(2)+'M':Math.round(v/1000)+'k'):f==='pct'?v.toFixed(1)+'%':Math.round(v).toString();
+function count(el,to,f,d=1600){const from=parseFloat(el.dataset.cur||0),t0=performance.now();el.dataset.cur=to;(function s(n){const p=Math.min(1,(n-t0)/d),e=1-Math.pow(1-p,4);el.textContent=fmt(from+(to-from)*e,f);if(p<1)requestAnimationFrame(s)})(t0)}
+setTimeout(()=>document.querySelectorAll('[data-count]').forEach(el=>count(el,+el.dataset.count,el.dataset.fmt)),400);
+setInterval(()=>{const d=new Date();document.getElementById('clock').textContent='Live · '+d.toLocaleTimeString('en-GB')},1000);
+// revenue chart
+(function(){const s=document.getElementById('rev');const m=['Jul','Aug','Sep','Oct','Nov','Dec'];const closed=[92,118,141,172,160,0],fc=[0,0,0,172,214,262],tg=[110,120,130,170,190,210];
+ const X=i=>60+i*176,Y=v=>230-v*.78;let h='';
+ [0,100,200,300].forEach(v=>h+=`<line x1="40" x2="1000" y1="${Y(v)}" y2="${Y(v)}" stroke="#24262d"/><text x="0" y="${Y(v)+4}" fill="#5b5f69" font-size="11" font-family="JetBrains Mono">€${v}k</text>`);
+ m.forEach((t,i)=>h+=`<text x="${X(i)}" y="256" fill="#8b8f99" font-size="12" text-anchor="middle" font-family="Inter Tight">${t}</text>`);
+ closed.forEach((v,i)=>{if(v)h+=`<rect x="${X(i)-26}" width="52" y="230" height="0" rx="6" fill="#ff4d5e" opacity=".92"><animate attributeName="y" to="${Y(v)}" dur="1.1s" begin="${.5+i*.12}s" fill="freeze" calcMode="spline" keySplines=".2 .8 .2 1"/><animate attributeName="height" to="${v*.78}" dur="1.1s" begin="${.5+i*.12}s" fill="freeze" calcMode="spline" keySplines=".2 .8 .2 1"/></rect>`});
+ const fp=fc.map((v,i)=>v?`${X(i)},${Y(v)}`:null).filter(Boolean).join(' L');h+=`<path d="M${fp}" fill="none" stroke="#6ea8ff" stroke-width="3" stroke-dasharray="600" stroke-dashoffset="600"><animate attributeName="stroke-dashoffset" to="0" dur="1.4s" begin="1.3s" fill="freeze"/></path>`;
+ fc.forEach((v,i)=>{if(v)h+=`<circle cx="${X(i)}" cy="${Y(v)}" r="5" fill="#0b0c0e" stroke="#6ea8ff" stroke-width="2.5" opacity="0"><animate attributeName="opacity" to="1" begin="${1.6+i*.1}s" dur=".3s" fill="freeze"/></circle>`});
+ h+=`<path d="M${tg.map((v,i)=>`${X(i)},${Y(v)}`).join(' L')}" fill="none" stroke="#5b5f69" stroke-width="1.5" stroke-dasharray="5 6"/>`;
+ h+=`<g opacity="0"><animate attributeName="opacity" to="1" begin="2.4s" dur=".4s" fill="freeze"/><rect x="${X(5)-196}" y="${Y(262)-16}" width="156" height="32" rx="8" fill="#1a1c21" stroke="#24262d"/><text x="${X(5)-118}" y="${Y(262)+5}" fill="#eceef2" font-size="12.5" text-anchor="middle" font-family="Inter Tight">Dec forecast €262k</text></g>`;
+ s.innerHTML=h})();
+// donut
+(function(){const d=[['Strawberry outreach',38,'#ff4d5e'],['Inbound',27,'#6ea8ff'],['Referrals',19,'#3ddc97'],['Events',16,'#ffb547']];let off=25,h='<circle cx="21" cy="21" r="15.9" fill="none" stroke="#24262d" stroke-width="5"/>',lg='';
+ d.forEach(([n,v,c],i)=>{h+=`<circle cx="21" cy="21" r="15.9" fill="none" stroke="${c}" stroke-width="5" stroke-dasharray="0 100" stroke-dashoffset="${off}" transform="rotate(0)"><animate attributeName="stroke-dasharray" to="${v-.8} ${100-v+.8}" dur="1s" begin="${.7+i*.2}s" fill="freeze"/></circle>`;off-=v;lg+=`<div><i style="display:inline-block;width:9px;height:9px;border-radius:3px;background:${c};margin-right:9px"></i>${n} <span class="mono" style="color:#8b8f99;margin-left:6px">${v}%</span></div>`});
+ h+=`<text x="21" y="21" text-anchor="middle" fill="#eceef2" font-size="6" font-weight="600" font-family="Inter Tight">€2.8M</text><text x="21" y="26.5" text-anchor="middle" fill="#8b8f99" font-size="2.6" font-family="Inter Tight">pipeline</text>`;
+ document.getElementById('donut').innerHTML=h;document.getElementById('dleg').innerHTML=lg})();
+// board
+const stages=['Lead','Qualified','Demo','Proposal','Negotiation'];
+const deals={Lead:[['Hemköp Retail','€48k',10],['Vattenfall Ops','€120k',12],['Klarna Payouts','€64k',8]],Qualified:[['Spotify Ads','€92k',30],['Northvolt','€210k',28],['Oatly EU','€55k',34]],Demo:[['IKEA Workplace','€180k',50],['Polestar Fleet','€76k',46]],Proposal:[['H&M Group','€240k',68],['Epidemic Sound','€38k',70]],Negotiation:[['Volvo Cars','€310k',86],['Truecaller','€58k',82]]};
+const board=document.getElementById('board');const colEl={};
+function card([n,v,p]){const d=document.createElement('div');d.className='deal';d.innerHTML=`<div class="n">${n}</div><div class="v"><span>${v}</span><span class="mono">${p}%</span></div><div class="bar"><i style="width:${p}%"></i></div>`;return d}
+stages.forEach(s=>{const c=document.createElement('div');c.className='col';c.innerHTML=`<h4>${s}<b>${deals[s].length}</b></h4>`;deals[s].forEach(d=>c.appendChild(card(d)));board.appendChild(c);colEl[s]=c});
+function recount(){stages.forEach(s=>colEl[s].querySelector('b').textContent=colEl[s].querySelectorAll('.deal').length)}
+function move(name,to,pct){const el=[...board.querySelectorAll('.deal')].find(d=>d.querySelector('.n').textContent===name);if(!el)return;const a=el.getBoundingClientRect();const target=colEl[to];
+ const ghost=el.cloneNode(true);ghost.classList.add('fly');Object.assign(ghost.style,{left:a.left+'px',top:a.top+'px',width:a.width+'px'});document.body.appendChild(ghost);el.style.visibility='hidden';
+ const ph=el.cloneNode(true);ph.style.visibility='hidden';target.insertBefore(ph,target.children[1]);const b=ph.getBoundingClientRect();el.remove();
+ requestAnimationFrame(()=>{ghost.style.transition='left .9s cubic-bezier(.6,0,.2,1),top .9s cubic-bezier(.6,0,.2,1)';ghost.style.left=b.left+'px';ghost.style.top=b.top+'px'});
+ setTimeout(()=>{ghost.remove();ph.style.visibility='';ph.classList.add('new');if(pct){ph.querySelector('.mono').textContent=pct+'%';ph.querySelector('.bar i').style.width=pct+'%'}recount()},950)}
+function addDeal(stage,d){const c=card(d);c.classList.add('new');colEl[stage].insertBefore(c,colEl[stage].children[1]);recount()}
+// feed
+const feed=document.getElementById('feed');
+function ev(ic,html,col){const e=document.createElement('div');e.className='ev';e.innerHTML=`<div class="ic" style="color:${col||'#eceef2'}">${ic}</div><div>${html}</div><div class="tm mono">now</div>`;feed.prepend(e);[...feed.children].slice(1).forEach((x,i)=>{const t=x.querySelector('.tm');t.textContent=t.textContent==='now'?'1m':t.textContent});if(feed.children.length>9)feed.lastChild.remove()}
+[['✉','<b>Strawberry</b> sent follow-up to <b>Anna Berg</b> at Oatly EU','#ff4d5e'],['☎','Call with <b>Polestar Fleet</b> summarised, 3 next steps logged'],['✓','<b>Epidemic Sound</b> opened the proposal (2nd time)','#3ddc97'],['↻','<b>Strawberry</b> enriched 12 new leads from the webinar list','#ff4d5e']].forEach(a=>ev(...a));
+const script=[
+ [2200,()=>{ev('◎','<b>Strawberry</b> read the call notes from <b>IKEA Workplace</b> and moved the deal to <b>Proposal</b>','#ff4d5e');move('IKEA Workplace','Proposal',66)}],
+ [5200,()=>{ev('✉','Reply from <b>Northvolt</b>: “Can we see pricing for 400 seats?”','#6ea8ff')}],
+ [7600,()=>{ev('✎','<b>Strawberry</b> drafted a 400-seat quote for Northvolt, waiting for your review','#ff4d5e');doneAct(0)}],
+ [10400,()=>{ev('★','<b>Volvo Cars</b> signed. €310k closed won','#3ddc97');const w=document.getElementById('won');count(w,994500,'eur',1400);[...board.querySelectorAll('.deal')].find(d=>d.querySelector('.n').textContent==='Volvo Cars')?.remove();recount();bump(0,82)}],
+ [13600,()=>{ev('+','<b>Strawberry</b> found a new lead: <b>Einride</b> (hiring 6 ops roles, uses our competitor)','#ff4d5e');addDeal('Lead',['Einride','€95k',10])}],
+ [16600,()=>{ev('✉','<b>Strawberry</b> sent 6 personalised follow-ups to stalled Qualified deals','#ff4d5e');const f=document.getElementById('fu');count(f,53,'',900);doneAct(1)}],
+ [19600,()=>{ev('◎','<b>Spotify Ads</b> booked a demo for Thursday 14:00','#6ea8ff');move('Spotify Ads','Demo',48)}],
+];
+function run(){script.forEach(([t,f])=>setTimeout(f,t))}run();
+// reps
+const reps=[['Sara Lind','#ff9aa2',226],['Jonas Ek','#b5ead7',188],['Maja Holm','#c7ceea',142],['Leo Sand','#ffdac1',128]];
+document.getElementById('reps').innerHTML=reps.map(([n,c,v],i)=>`<div class="rep"><div class="av" style="background:${c}">${n.split(' ').map(x=>x[0]).join('')}</div><div>${n}</div><div class="rb"><i data-w="${v/3.1}"></i></div><div class="mono" style="text-align:right">€${v}k</div></div>`).join('');
+setTimeout(()=>document.querySelectorAll('.rb i').forEach(i=>i.style.width=i.dataset.w+'%'),900);
+function bump(i,add){const r=document.querySelectorAll('.rep')[i];const m=r.querySelector('.mono');const v=parseInt(m.textContent.slice(1))+add;m.textContent='€'+v+'k';r.querySelector('.rb i').style.width=Math.min(100,v/3.1)+'%'}
+// actions
+const acts=[['Send Northvolt the 400-seat quote Strawberry drafted','€210k'],['Nudge 6 Qualified deals with no reply in 7 days','€412k'],['Prep for H&M Group negotiation tomorrow 10:00. Brief is ready','€240k'],['Truecaller legal asked about DPA. Draft answer from template','€58k'],['Re-engage Hemköp. Their new COO started Monday','€48k']];
+document.getElementById('acts').innerHTML=acts.map(([t,v])=>`<div class="act"><div class="chk"></div><div class="tx">${t}<span class="pill mono">${v}</span></div></div>`).join('');
+function doneAct(i){document.querySelectorAll('.act')[i].classList.add('done')}
+</script>
+</body></html>

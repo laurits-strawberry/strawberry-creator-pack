@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ödman · Independent watchmaking, Stockholm</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter+Tight:wght@400;500&display=swap" rel="stylesheet">
+<style>
+@property --d1{syntax:'<color>';inherits:true;initial-value:#cfd2d6}
+@property --d2{syntax:'<color>';inherits:true;initial-value:#bfc3c8}
+@property --pr{syntax:'<color>';inherits:true;initial-value:#23252a}
+@property --hd{syntax:'<color>';inherits:true;initial-value:#1d3f8f}
+:root{--bg:#0b0a09;--ink:#f1ebe0;--soft:rgba(241,235,224,.72);--mute:rgba(241,235,224,.5);--line:rgba(241,235,224,.13);--gold:#cfae7b;--e:cubic-bezier(.19,1,.22,1);--pad:clamp(20px,3vw,44px)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--bg)}html.lenis,html.lenis body{height:auto}
+body{background:var(--bg);color:var(--ink);font-family:'Inter Tight',sans-serif;font-size:16px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a,button{color:inherit;text-decoration:none;font:inherit;background:none;border:0;cursor:pointer}
+img,video{display:block}
+.serif{font-family:'Cormorant Garamond',serif;font-weight:300;letter-spacing:-.015em;line-height:.95}
+.serif em{font-style:italic}
+.lab{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.pin{position:sticky;top:0;height:100vh;overflow:hidden}
+.full{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+
+/* loader */
+#loader{position:fixed;inset:0;z-index:100;background:var(--bg);display:grid;place-items:center;transition:opacity 1.4s var(--e),visibility 1.4s}
+#loader.out{opacity:0;visibility:hidden}
+#loader .serif{font-size:clamp(28px,3vw,44px);letter-spacing:.4em;padding-left:.4em;opacity:.9}
+#loader .bar{position:absolute;left:50%;bottom:18vh;width:160px;height:1px;margin-left:-80px;background:var(--line)}
+#loader .bar i{position:absolute;inset:0 auto 0 0;width:0;background:var(--ink);transition:width .3s}
+
+/* nav */
+nav{position:fixed;inset:0 0 auto;z-index:60;height:76px;padding:0 var(--pad);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;transition:background .6s,backdrop-filter .6s}
+nav.solid{background:rgba(11,10,9,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+nav .links{display:flex;gap:32px;font-size:14px;color:var(--soft)}
+nav .links a:hover,nav .right a:hover{color:var(--ink)}
+nav .logo{font-family:'Cormorant Garamond';font-size:24px;letter-spacing:.34em;padding-left:.34em}
+nav .right{justify-self:end;display:flex;gap:28px;align-items:center;font-size:14px;color:var(--soft)}
+nav .cta{color:var(--ink);border:1px solid rgba(241,235,224,.35);border-radius:999px;padding:10px 18px;transition:background .4s,color .4s}
+nav .cta:hover{background:var(--ink);color:#000!important}
+#clock{font-variant-numeric:tabular-nums}
+
+/* HERO */
+#hero{height:240vh}
+#hero .film{position:absolute;inset:0;will-change:clip-path}
+#hero .film video{will-change:transform}
+#hero .scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,10,9,.55) 0%,rgba(11,10,9,0) 30%,rgba(11,10,9,0) 50%,rgba(11,10,9,.85) 100%)}
+.h-copy{position:absolute;left:var(--pad);right:var(--pad);bottom:var(--pad);display:grid;grid-template-columns:1fr auto;align-items:end;gap:40px;z-index:3}
+.h-copy h1{font-size:clamp(64px,8.2vw,156px);max-width:13ch}
+.h-copy h1 .l{display:block;overflow:hidden;padding-bottom:.06em}
+.h-copy h1 .l span{display:block;transform:translateY(110%);transition:transform 1.6s var(--e)}
+.ready .h-copy h1 .l span{transform:none}
+.ready .h-copy h1 .l:nth-child(2) span{transition-delay:.1s}
+.h-copy .side{max-width:30ch;font-size:16px;line-height:1.55;color:var(--soft);padding-bottom:12px;opacity:0;transition:opacity 1.4s .6s}
+.ready .h-copy .side{opacity:1}
+.h-copy .side .lab{display:block;margin-bottom:14px}
+
+/* BUILD */
+#build{height:820vh;position:relative}
+#build .pin{background:radial-gradient(ellipse 60% 55% at 60% 50%,#1b1916 0%,#0b0a09 70%)}
+.stage{position:absolute;left:58%;top:50%;width:0;height:0;perspective:2400px}
+.watch{--D:min(64vh,40vw);position:absolute;left:calc(var(--D)/-2);top:calc(var(--D)/-2);width:var(--D);height:var(--D);transform-style:preserve-3d;will-change:transform}
+.ly{position:absolute;inset:0;transform-style:preserve-3d;will-change:transform,opacity}
+.ly>*{position:absolute}
+.l-move img{left:9.2%;top:9.2%;width:81.6%;height:81.6%;border-radius:50%}
+.l-case img{inset:0;width:100%;height:100%;transform:scaleX(-1)}
+.l-case .crown{left:98.2%;top:45.5%;width:5.2%;height:9%;border-radius:2px 5px 5px 2px;background:linear-gradient(180deg,rgba(0,0,0,.45),rgba(255,255,255,0) 30%,rgba(255,255,255,0) 70%,rgba(0,0,0,.5)),repeating-linear-gradient(0deg,#5d6167 0 1.5px,#e6e8eb 1.5px 3.5px,#a5a9ae 3.5px 5px);box-shadow:inset -2px 0 3px rgba(0,0,0,.4)}
+.l-case .crown:before{content:'';position:absolute;right:100%;top:30%;width:30%;height:40%;background:linear-gradient(180deg,#9ea2a8,#e9ebee 50%,#7d8187)}
+.dial{left:9.2%;top:9.2%;width:81.6%;height:81.6%;border-radius:50%;
+  background:radial-gradient(circle at 38% 30%,rgba(255,255,255,.28),rgba(255,255,255,0) 55%),repeating-conic-gradient(from 0deg,var(--d1) 0deg .7deg,var(--d2) .7deg 1.4deg);
+  -webkit-mask:radial-gradient(circle at 59% 22.2%,transparent 17.6%,#000 17.9%);mask:radial-gradient(circle at 59% 22.2%,transparent 17.6%,#000 17.9%);
+  box-shadow:inset 0 0 0 1px rgba(0,0,0,.25),inset 0 -8px 30px rgba(0,0,0,.25)}
+.aperture{left:calc(9.2% + 81.6%*.59 - 81.6%*.182);top:calc(9.2% + 81.6%*.222 - 81.6%*.182);width:calc(81.6%*.364);height:calc(81.6%*.364);border-radius:50%;box-shadow:inset 0 0 0 3px rgba(255,255,255,.55),inset 0 0 0 5px rgba(0,0,0,.35),inset 0 10px 24px rgba(0,0,0,.55)}
+.track{left:12%;top:12%;width:76%;height:76%;border-radius:50%;background:repeating-conic-gradient(var(--pr) 0 .35deg,transparent .35deg 6deg);-webkit-mask:radial-gradient(circle,transparent 94%,#000 94.2%,#000 99%,transparent 99.2%);mask:radial-gradient(circle,transparent 94%,#000 94.2%,#000 99%,transparent 99.2%);opacity:.8}
+.idx{left:50%;top:50%;width:2.2%;height:9%;margin-left:-1.1%;transform-origin:50% 0;background:linear-gradient(90deg,#8d8f93,#f4f5f6 45%,#9a9da2);border-radius:1px;box-shadow:0 1px 2px rgba(0,0,0,.4)}
+.brandmark{left:0;right:0;top:57%;text-align:center;color:var(--pr);font-family:'Cormorant Garamond';font-weight:500;letter-spacing:.3em;padding-left:.3em;font-size:calc(var(--D)*.052)}
+.brandmark small{display:block;font-family:'Inter Tight';font-weight:500;font-size:.34em;letter-spacing:.35em;margin-top:.5em;opacity:.75}
+.hand{left:50%;bottom:50%;transform-origin:50% 100%}
+.hh{width:4.2%;margin-left:-2.1%;height:24%;clip-path:polygon(50% 0,100% 78%,50% 100%,0 78%);background:linear-gradient(90deg,#b9bdc3 0 50%,#f3f4f6 50% 100%)}
+.mh{width:3.4%;margin-left:-1.7%;height:36%;clip-path:polygon(50% 0,100% 84%,50% 100%,0 84%);background:linear-gradient(90deg,#b9bdc3 0 50%,#f3f4f6 50% 100%)}
+.sh{width:.55%;margin-left:-.275%;height:44%;background:var(--hd);bottom:42%;transform-origin:50% calc(100% - 8% / 0.44)}
+.sh:after{content:'';position:absolute;left:50%;bottom:-18%;width:260%;height:18%;margin-left:-130%;background:var(--hd);border-radius:2px}
+.cap{left:48.3%;top:48.3%;width:3.4%;height:3.4%;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff,#7a7e84)}
+.hands-shadow{filter:drop-shadow(3px 5px 4px rgba(0,0,0,.35))}
+.glass{left:8.6%;top:8.6%;width:82.8%;height:82.8%;border-radius:50%;background:radial-gradient(ellipse 60% 40% at 32% 22%,rgba(255,255,255,.32),rgba(255,255,255,0) 60%),radial-gradient(circle,rgba(255,255,255,0) 86%,rgba(255,255,255,.18) 100%);box-shadow:inset 0 0 0 1px rgba(255,255,255,.25);overflow:hidden}
+.glass i{position:absolute;inset:-20%;background:linear-gradient(115deg,transparent 42%,rgba(255,255,255,.22) 48%,transparent 54%);transform:translateX(-60%)}
+.shadow{position:absolute;left:50%;top:50%;width:var(--D);height:var(--D);margin:calc(var(--D)/-2) 0 0 calc(var(--D)/-2);border-radius:50%;background:radial-gradient(circle,rgba(0,0,0,.65),rgba(0,0,0,0) 65%);transform:translateZ(-40px) scale(1.1);filter:blur(10px)}
+.b-list{position:absolute;left:var(--pad);top:50%;transform:translateY(-50%);width:min(30vw,420px);z-index:4}
+.b-list h2{font-size:clamp(44px,4.4vw,78px);margin:18px 0 38px}
+.b-list ol{list-style:none;border-top:1px solid var(--line)}
+.b-list li{display:grid;grid-template-columns:44px 1fr;padding:18px 0;border-bottom:1px solid var(--line);color:var(--mute);transition:color .6s}
+.b-list li .n{font-size:13px;padding-top:6px;font-variant-numeric:tabular-nums}
+.b-list li b{display:block;font-family:'Cormorant Garamond';font-weight:400;font-size:30px;line-height:1.1}
+.b-list li p{font-size:15px;line-height:1.5;max-height:0;opacity:0;overflow:hidden;transition:max-height .8s var(--e),opacity .6s,margin .6s;color:var(--soft)}
+.b-list li.on{color:var(--ink)}
+.b-list li.on p{max-height:80px;opacity:1;margin-top:8px}
+.b-final{position:absolute;left:var(--pad);bottom:var(--pad);right:var(--pad);display:flex;justify-content:space-between;align-items:flex-end;z-index:4;opacity:0}
+.b-final .serif{font-size:clamp(34px,3vw,54px)}
+.b-final p{font-size:15px;color:var(--soft);max-width:34ch;line-height:1.5;text-align:right}
+
+/* HEART */
+#heart{height:300vh;position:relative}
+.bfilm{position:absolute;inset:0;z-index:6;opacity:0;pointer-events:none}
+#heart .film{position:absolute;inset:0}
+#heart .scrim{position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,10,9,.94) 0%,rgba(11,10,9,.78) 36%,rgba(11,10,9,.1) 72%),linear-gradient(0deg,rgba(11,10,9,.7),rgba(11,10,9,0) 30%)}
+.heart-copy{position:absolute;left:var(--pad);top:50%;transform:translateY(-50%);max-width:560px;z-index:3;opacity:0}
+.heart-copy h2{font-size:clamp(52px,5.6vw,104px);margin:20px 0 28px}
+.heart-copy p{font-size:17px;line-height:1.6;color:var(--soft);max-width:40ch}
+.beat{position:absolute;right:var(--pad);bottom:var(--pad);z-index:3;text-align:right;opacity:0}
+.beat b{display:block;font-family:'Cormorant Garamond';font-weight:300;font-size:clamp(60px,6vw,110px);line-height:1;font-variant-numeric:tabular-nums}
+
+/* ATELIER */
+#atelier{position:relative;display:grid;grid-template-columns:5fr 7fr;min-height:100vh;border-top:1px solid var(--line)}
+.at-copy{padding:18vh var(--pad) 12vh;display:flex;flex-direction:column;justify-content:space-between}
+.at-copy h2{font-size:clamp(52px,5.4vw,100px);margin:20px 0 32px}
+.at-copy p{font-size:17px;line-height:1.6;color:var(--soft);max-width:40ch}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);margin-top:8vh}
+.stats div{padding:22px 16px 0 0}
+.stats b{display:block;font-family:'Cormorant Garamond';font-weight:300;font-size:clamp(46px,4.4vw,80px);line-height:1;font-variant-numeric:tabular-nums}
+.stats span{font-size:14px;color:var(--mute)}
+.at-media{position:relative;overflow:hidden}
+.at-media video{position:absolute;left:0;top:-10%;width:100%;height:120%;object-fit:cover;will-change:transform}
+.at-media .tag{position:absolute;left:24px;bottom:22px;font-size:13px;color:var(--ink);background:rgba(11,10,9,.55);backdrop-filter:blur(8px);padding:10px 14px;border-radius:999px}
+
+/* COLLECTION */
+#coll{height:420vh;position:relative}
+#coll .pin{display:grid;grid-template-columns:1fr 1fr;align-items:center}
+.c-stage{position:relative;height:100%}
+.c-stage .watch{--D:min(62vh,38vw);left:50%;top:50%;margin:calc(var(--D)/-2) 0 0 calc(var(--D)/-2);transform:none}
+.c-stage .l-move{display:none}
+.c-glow{position:absolute;left:50%;top:50%;width:80vh;height:80vh;margin:-40vh 0 0 -40vh;border-radius:50%;background:radial-gradient(circle,var(--glow,rgba(207,174,123,.16)),transparent 65%);transition:--glow 1s}
+.c-info{padding-right:var(--pad);max-width:620px}
+.c-name{position:relative;height:clamp(90px,9vw,170px);overflow:hidden;margin:18px 0 22px}
+.c-name>div{position:absolute;left:0;top:0;font-size:clamp(84px,8.6vw,160px);transform:translateY(105%);transition:transform 1.1s var(--e)}
+.c-name>div.on{transform:none}.c-name>div.up{transform:translateY(-105%)}
+.c-desc{position:relative;height:84px}
+.c-desc p{position:absolute;inset:0;font-size:17px;line-height:1.6;color:var(--soft);opacity:0;transition:opacity .7s}
+.c-desc p.on{opacity:1}
+.c-spec{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);margin:34px 0}
+.c-spec div{padding:18px 12px 0 0;font-size:15px;line-height:1.5}
+.c-spec .lab{display:block;margin-bottom:6px;font-size:11px}
+.c-row{display:flex;align-items:center;gap:26px}
+.c-price{font-family:'Cormorant Garamond';font-size:36px;font-variant-numeric:tabular-nums}
+.btn{display:inline-flex;align-items:center;gap:14px;background:var(--ink);color:#0b0a09;border-radius:999px;padding:17px 26px;font-size:15px;font-weight:500;transition:transform .6s var(--e),background .4s}
+.btn:hover{transform:translateY(-2px);background:#fff}
+.btn.ghost{background:none;color:var(--ink);border:1px solid rgba(241,235,224,.35)}
+.btn.ghost:hover{background:var(--ink);color:#0b0a09}
+.c-dots{display:flex;gap:10px;margin-top:40px}
+.c-dots i{width:44px;height:2px;background:var(--line);position:relative;overflow:hidden}
+.c-dots i b{position:absolute;inset:0;width:0;background:var(--ink)}
+
+/* RESERVE */
+#reserve{padding:20vh var(--pad) 14vh;display:grid;grid-template-columns:1.1fr 1fr;gap:8vw;border-top:1px solid var(--line)}
+#reserve h2{font-size:clamp(64px,7.4vw,140px)}
+#reserve .intro{font-size:17px;line-height:1.6;color:var(--soft);max-width:42ch;margin-bottom:34px}
+.form{border-top:1px solid var(--line)}
+.form label{display:grid;grid-template-columns:120px 1fr;align-items:center;border-bottom:1px solid var(--line)}
+.form label span{font-size:14px;color:var(--mute)}
+.form input,.form select{background:none;border:0;color:var(--ink);font:inherit;font-size:17px;padding:20px 0;outline:none;width:100%}
+.form select option{background:#151412}
+.form .btn{margin-top:30px}
+footer{padding:0 var(--pad) 28px}
+footer .cols{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;font-size:15px;line-height:1.7;color:var(--soft);border-top:1px solid var(--line);padding-top:36px}
+footer .cols .lab{display:block;margin-bottom:10px}
+footer .big{font-family:'Cormorant Garamond';font-weight:300;font-size:21vw;letter-spacing:.14em;padding-left:.14em;text-align:center;line-height:.85;margin:14vh 0 28px;color:rgba(241,235,224,.9)}
+footer .legal{display:flex;justify-content:space-between;font-size:13px;color:var(--mute)}
+.fd{opacity:0;transform:translateY(28px);transition:opacity 1.3s var(--e),transform 1.3s var(--e)}.fd.in{opacity:1;transform:none}
+@media(max-width:900px){nav .links{display:none}.b-list{top:auto;bottom:var(--pad);transform:none;width:auto;right:var(--pad)}.b-list h2,.b-list li p{display:none}.stage{left:50%;top:38%}.watch{--D:72vw}#atelier,#coll .pin,#reserve{grid-template-columns:1fr}.at-media{min-height:60vh}.h-copy{grid-template-columns:1fr}footer .cols{grid-template-columns:1fr 1fr}}
+@media(prefers-reduced-motion:reduce){*{transition-duration:.01ms!important}}
+</style>
+<script type="importmap">{"imports":{"lenis":"https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.mjs"}}</script>
+</head>
+<body>
+<div id="loader"><span class="serif">ÖDMAN</span><div class="bar"><i id="lb"></i></div></div>
+
+<nav id="nav">
+  <div class="links"><a href="#build">The watch</a><a href="#atelier">Atelier</a><a href="#coll">Collection</a></div>
+  <a class="logo" href="#hero">ÖDMAN</a>
+  <div class="right"><span id="clock">Stockholm 00:00</span><a class="cta" href="#reserve">Book a visit</a></div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="pin">
+    <div class="film" id="hfilm"><video class="full" id="hvid" src="media/hero.mp4" poster="media/hero.jpg" autoplay muted loop playsinline></video><div class="scrim"></div></div>
+    <div class="h-copy" id="hcopy">
+      <h1 class="serif"><span class="l"><span>Made by hand,</span></span><span class="l"><span><em>one at a time.</em></span></span></h1>
+      <div class="side"><span class="lab">Independent watchmaking · Stockholm</span>Eleven watches a year, each assembled and regulated by the same pair of hands.</div>
+    </div>
+  </div>
+</section>
+
+<!-- BUILD -->
+<section id="build">
+  <div class="pin">
+    <div class="b-list" id="blist">
+      <span class="lab">Assembling the Ö-02</span>
+      <h2 class="serif">Five parts,<br><em>four hundred hours.</em></h2>
+      <ol>
+        <li><span class="n">01</span><div><b>The movement</b><p>Hand-wound calibre, 23 jewels, finished with Geneva stripes and blued screws.</p></div></li>
+        <li><span class="n">02</span><div><b>The dial</b><p>Sunray-brushed, with an aperture cut over the balance so you can watch it breathe.</p></div></li>
+        <li><span class="n">03</span><div><b>The hands</b><p>Faceted dauphine hands, polished on one side and brushed on the other.</p></div></li>
+        <li><span class="n">04</span><div><b>The crystal</b><p>Domed sapphire with anti-reflective coating on the inside only.</p></div></li>
+        <li><span class="n">05</span><div><b>The case</b><p>39 mm steel, mirror-polished by hand. Water resistant to 50 metres.</p></div></li>
+      </ol>
+    </div>
+    <div class="stage">
+      <div class="watch" id="W">
+        <div class="shadow"></div>
+        <div class="ly l-move"><img src="media/w/movement.png" alt="Hand-finished watch movement"></div>
+        <div class="ly l-dial"><div class="dial"></div><div class="aperture"></div><div class="track"></div><div class="idxs"></div><div class="brandmark">ÖDMAN<small>STOCKHOLM</small></div></div>
+        <div class="ly l-hands hands-shadow"><div class="hand hh"></div><div class="hand mh"></div><div class="hand sh"></div><div class="cap"></div></div>
+        <div class="ly l-glass"><div class="glass"><i></i></div></div>
+        <div class="ly l-case"><div class="crown"></div><img src="media/w/case.png" alt="Polished steel case"></div>
+      </div>
+    </div>
+    <div class="bfilm" id="bfilm"><video class="full" id="bfv" src="media/balance.mp4" muted loop playsinline autoplay></video></div>
+    <div class="b-final" id="bfinal"><span class="serif">Ödman Ö-02, <em>telling Stockholm time.</em></span><p>That's the actual time. Every watch leaves the atelier set to the minute.</p></div>
+  </div>
+</section>
+
+<!-- HEART -->
+<section id="heart">
+  <div class="pin">
+    <div class="film" id="heartFilm"><video class="full" src="media/balance.mp4" poster="media/balance.jpg" muted loop playsinline autoplay></video><div class="scrim"></div></div>
+    <div class="heart-copy" id="heartCopy"><span class="lab">Through the aperture</span><h2 class="serif">A heartbeat you <em>can see.</em></h2><p>The balance wheel swings eight times a second, 691,200 times a day. We poise each one by hand, removing metal a few micrograms at a time until it runs even in every position.</p></div>
+    <div class="beat" id="beat"><span class="lab">Beats since you arrived</span><b id="beats">0</b></div>
+  </div>
+</section>
+
+<!-- ATELIER -->
+<section id="atelier">
+  <div class="at-copy">
+    <div><span class="lab fd">The atelier</span><h2 class="serif fd">No production line. <em>A practice.</em></h2><p class="fd">Our workshop on Hornsgatan has four benches and one rule: the watchmaker who starts a watch finishes it. Their initials are engraved inside the caseback.</p></div>
+    <div class="stats fd"><div><b data-to="400">0</b><span>hours per watch</span></div><div><b data-to="11">0</b><span>watches a year</span></div><div><b data-to="4">0</b><span>watchmakers</span></div></div>
+  </div>
+  <div class="at-media"><video id="atv" src="media/bench.mp4" poster="media/bench.jpg" muted loop playsinline autoplay></video><span class="tag">Ingrid at bench two, regulating an Ö-02</span></div>
+</section>
+
+<!-- COLLECTION -->
+<section id="coll">
+  <div class="pin">
+    <div class="c-stage">
+      <div class="c-glow"></div>
+      <div class="watch" id="W2">
+        <div class="shadow"></div>
+        <div class="ly l-move"></div>
+        <div class="ly l-dial"><div class="dial"></div><div class="aperture" style="background:url(media/w/movement.png) 59% 22%/275% auto;"></div><div class="track"></div><div class="idxs"></div><div class="brandmark">ÖDMAN<small>STOCKHOLM</small></div></div>
+        <div class="ly l-hands hands-shadow"><div class="hand hh"></div><div class="hand mh"></div><div class="hand sh"></div><div class="cap"></div></div>
+        <div class="ly l-glass"><div class="glass"><i></i></div></div>
+        <div class="ly l-case"><div class="crown"></div><img src="media/w/case.png" alt=""></div>
+      </div>
+    </div>
+    <div class="c-info">
+      <span class="lab">The collection · three dials</span>
+      <div class="c-name serif" id="cname"><div>Frost</div><div><em>Midnatt</em></div><div>Elfenben</div></div>
+      <div class="c-desc" id="cdesc"><p>Silver sunray dial with blued seconds. The one we'd wear every day.</p><p>Deep blue, like the sky over Stockholm in December at three in the afternoon.</p><p>Warm ivory with black print. Quiet enough for a suit, honest enough for jeans.</p></div>
+      <div class="c-spec"><div><span class="lab">Case</span>39 mm steel</div><div><span class="lab">Movement</span>Ö-02, hand-wound</div><div><span class="lab">Series</span><span id="cser">60 pieces</span></div></div>
+      <div class="c-row"><span class="c-price" id="cprice">96 000 kr</span><a class="btn" href="#reserve">Reserve this dial →</a></div>
+      <div class="c-dots" id="cdots"><i><b></b></i><i><b></b></i><i><b></b></i></div>
+    </div>
+  </div>
+</section>
+
+<!-- RESERVE -->
+<section id="reserve">
+  <h2 class="serif fd">Come and<br><em>wind one.</em></h2>
+  <div class="fd">
+    <p class="intro">We don't sell online. Book an hour at the atelier to hold the watches, meet your watchmaker and choose your dial. Coffee is on us.</p>
+    <form class="form" onsubmit="event.preventDefault();this.querySelector('.btn').textContent='Thank you. We\'ll be in touch within two days.'">
+      <label><span>Name</span><input required placeholder="Your name"></label>
+      <label><span>Email</span><input type="email" required placeholder="you@example.com"></label>
+      <label><span>Dial</span><select><option>Frost</option><option>Midnatt</option><option>Elfenben</option><option>Not sure yet</option></select></label>
+      <button class="btn">Request a visit →</button>
+    </form>
+  </div>
+</section>
+<footer>
+  <div class="cols"><div><span class="lab">Atelier</span>Hornsgatan 41<br>118 49 Stockholm</div><div><span class="lab">Visits</span>By appointment<br>Tuesday to Saturday</div><div><span class="lab">Service</span>Lifetime servicing<br>for every Ödman</div><div><span class="lab">Contact</span>atelier@odman.se<br>+46 8 000 00 00</div></div>
+  <div class="big">ÖDMAN</div>
+  <div class="legal"><span>© 2026 Ödman Horologi AB</span><span>Site by Strawberry</span></div>
+</footer>
+
+<script type="module">
+import Lenis from 'lenis';
+const clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x)),lerp=(a,b,t)=>a+(b-a)*t;
+const ss=(a,b,x)=>{const t=clamp((x-a)/(b-a));return t*t*(3-2*t)};
+const ease=t=>1-Math.pow(1-t,3);
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const secP=el=>{const r=el.getBoundingClientRect();return clamp(-r.top/(r.height-innerHeight))};
+
+/* indices */
+$$('.idxs').forEach(g=>{for(let i=0;i<12;i++){if(i===0||i===1)continue;const d=document.createElement('div');d.className='idx';d.style.transform=`rotate(${i*30+180}deg) translateY(${'calc(var(--D)*.305)'})`;d.style.transform=`rotate(${i*30+180}deg) translateY(30.5%)`;g.appendChild(d)}});
+/* the translateY % is relative to the index height, so use absolute px based on D instead */
+function placeIdx(){$$('.watch').forEach(w=>{const D=w.getBoundingClientRect().width||w.offsetWidth;w.querySelectorAll('.idx').forEach((d,k)=>{const i=[2,3,4,5,6,7,8,9,10,11][k];d.style.transform=`rotate(${i*30+180}deg) translateY(${D*.3}px)`})})}
+
+/* preload */
+const srcs=['media/w/movement.png','media/w/case.png','media/hero.jpg','media/balance.jpg','media/bench.jpg'];let done=0;
+srcs.forEach(s=>{const i=new Image();i.onload=i.onerror=()=>{done++;$('#lb').style.width=done/srcs.length*100+'%'};i.src=s});
+const lenis=new Lenis({lerp:.08});lenis.stop();
+(function wait(){if(done>=srcs.length){setTimeout(go,500);return}requestAnimationFrame(wait)})();
+function go(){$('#loader').classList.add('out');document.documentElement.classList.add('ready');lenis.start();placeIdx();
+  const q=new URLSearchParams(location.search);if(q.has('s')){lenis.scrollTo($(q.get('s')).offsetTop+(+q.get('o')||0)*innerHeight,{immediate:true})}}
+addEventListener('resize',placeIdx);
+$$('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();lenis.scrollTo(a.getAttribute('href'),{duration:2.6})}));
+
+/* live time */
+const tz='Europe/Stockholm';
+function nowParts(){const d=new Date(new Date().toLocaleString('en-US',{timeZone:tz}));return{h:d.getHours(),m:d.getMinutes(),s:d.getSeconds()+new Date().getMilliseconds()/1000}}
+setInterval(()=>{const p=nowParts();$('#clock').textContent=`Stockholm ${String(p.h).padStart(2,'0')}:${String(p.m).padStart(2,'0')}`},1000);
+
+/* reveals + counters */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;const t=e.target;t.classList.add('in');io.unobserve(t);
+  t.querySelectorAll('b[data-to]').forEach(b=>{const to=+b.dataset.to,t0=performance.now();(function c(n){const k=clamp((n-t0)/1800);b.textContent=Math.round(to*ease(k));if(k<1)requestAnimationFrame(c)})(t0)})}),{threshold:.25});
+$$('.fd').forEach(x=>io.observe(x));
+
+/* collection */
+const DIALS=[{d1:'#d3d6da',d2:'#c2c6cb',pr:'#22252b',hd:'#1f4796',glow:'rgba(200,210,225,.14)',price:'96 000 kr',ser:'60 pieces'},{d1:'#22335e',d2:'#1a2849',pr:'#e9e6df',hd:'#d7b27a',glow:'rgba(70,100,180,.22)',price:'112 000 kr',ser:'40 pieces'},{d1:'#efe7d6',d2:'#e3d9c4',pr:'#1b1a18',hd:'#8d2c22',glow:'rgba(230,205,160,.16)',price:'104 000 kr',ser:'25 pieces'}];
+function swapper(el){const k=[...el.children];let c=-1;return i=>{if(i===c)return;k.forEach((x,j)=>{x.classList.toggle('on',j===i);x.classList.toggle('up',j<i)});c=i}}
+const cn=swapper($('#cname'));const cd=[...$('#cdesc').children],cdots=$$('#cdots b');let lastC=-1;
+const W2=$('#W2'),cg=$('.c-glow');
+$$('#W2 .dial,#W2 .l-dial,#W2 .l-hands').forEach(e=>e.style.transition='--d1 1.2s,--d2 1.2s,--pr 1.2s,--hd 1.2s');
+W2.style.transition='--d1 1.2s,--d2 1.2s,--pr 1.2s,--hd 1.2s';
+
+/* build refs */
+const W=$('#W'),L={move:$('#W .l-move'),dial:$('#W .l-dial'),hands:$('#W .l-hands'),glass:$('#W .l-glass'),cas:$('#W .l-case')};
+const order=['move','dial','hands','glass','cas'];const li=$$('#blist li');let lastB=-1;
+const t0=performance.now();
+
+function setHands(root,spin=0){const p=nowParts();const s=p.s,m=p.m+s/60,h=(p.h%12)+m/60;
+  root.querySelector('.hh').style.transform=`rotate(${h*30+spin*.08}deg)`;root.querySelector('.mh').style.transform=`rotate(${m*6+spin}deg)`;
+  root.querySelector('.sh').style.transform=`rotate(${Math.floor(s*8)/8*6}deg)`}
+
+function raf(t){
+  lenis.raf(t);
+  $('#nav').classList.toggle('solid',scrollY>innerHeight*.5);
+
+  /* HERO → film tightens to the movement's circle */
+  const hp=secP($('#hero'));const k=ss(.35,1,hp);
+  const D=Math.min(innerHeight*.64,innerWidth*.40)*.816;
+  const cx=lerp(50,58,k),R=lerp(Math.hypot(innerWidth,innerHeight)/2,D/2,ease(k));
+  $('#hfilm').style.clipPath=`circle(${R}px at ${cx}% 50%)`;
+  $('#hvid').style.transform=`scale(${1.1-k*.1})`;
+  $('#hcopy').style.opacity=1-ss(.05,.3,hp);$('#hcopy').style.transform=`translateY(${-ss(0,.3,hp)*60}px)`;
+  $('#hfilm').style.opacity=1-ss(.93,1,hp);
+
+  /* BUILD */
+  const bp=secP($('#build'));
+  const tilt=ss(.03,.15,bp)*(1-ss(.66,.78,bp));
+  const zi=ss(.88,1,bp);
+  W.style.transformOrigin='59% 22.2%';
+  W.style.transform=`translateY(${tilt*Math.min(innerHeight*.64,innerWidth*.4)*.42}px) rotateX(${tilt*54}deg) rotateZ(${tilt*-22}deg) scale(${(1-tilt*.1)*(1+Math.pow(zi,2.4)*7)})`;
+  const Dp=Math.min(innerHeight*.64,innerWidth*.40);
+  let step=0;
+  order.forEach((key,i)=>{
+    if(i===0){L[key].style.transform='translateZ(0)';L[key].style.opacity=1;return}
+    const a=.16+(i-1)*.125,b=a+.14;
+    const seat=ss(a,b,bp);
+    const pre=ss(.1,.16,bp);/* parts hover in the air before they fall */
+    if(seat>.55)step=i;
+    const hover=Dp*(.1+i*.105);
+    const z=lerp(hover,i*2.5,ease(seat));
+    L[key].style.transform=`translateZ(${z*pre+ (1-pre)*hover*1.35}px)`;L[key].style.opacity=pre;
+  });
+  if(bp<.2)step=0;
+  if(step!==lastB){li.forEach((l,j)=>l.classList.toggle('on',j===step));lastB=step}
+  $('#blist').style.opacity=1-ss(.7,.78,bp);
+  const fin=ss(.76,.82,bp)*(1-ss(.88,.92,bp));$('#bfinal').style.opacity=fin;$('#bfinal').style.transform=`translateY(${(1-ss(.76,.82,bp))*20}px)`;
+  setHands(L.hands,(1-ss(.55,.72,bp))*720);
+  L.hands.style.opacity=Math.min(+L.hands.style.opacity,1-ss(.9,.95,bp));
+  $('#W .glass i').style.transform=`translateX(${lerp(-60,60,ss(.62,.8,bp))}%)`;
+  $('#bfilm').style.opacity=ss(.965,.998,bp);$('#bfv').style.transform=`scale(${1.35-ss(.965,1,bp)*.35})`;
+
+  /* HEART */
+  const kp=secP($('#heart'));
+  $('#heartCopy').style.opacity=ss(.08,.22,kp)*(1-ss(.86,.98,kp));$('#heartCopy').style.transform=`translateY(calc(-50% + ${(1-ss(.08,.22,kp))*30}px))`;
+  $('#beat').style.opacity=ss(.15,.3,kp)*(1-ss(.86,.98,kp));
+  $('#heart .scrim').style.opacity=ss(0,.2,kp);
+  $('#beats').textContent=Math.floor((performance.now()-t0)/125).toLocaleString('en-US');
+
+  /* ATELIER parallax */
+  const ar=$('#atelier').getBoundingClientRect();$('#atv').style.transform=`translateY(${(ar.top/innerHeight)*-6}%)`;
+
+  /* COLLECTION */
+  const cp=secP($('#coll'));const ci=clamp(Math.floor(cp*3),0,2);
+  if(ci!==lastC){const d=DIALS[ci];W2.style.setProperty('--d1',d.d1);W2.style.setProperty('--d2',d.d2);W2.style.setProperty('--pr',d.pr);W2.style.setProperty('--hd',d.hd);cg.style.setProperty('--glow',d.glow);
+    cn(ci);cd.forEach((p,j)=>p.classList.toggle('on',j===ci));$('#cprice').textContent=d.price;$('#cser').textContent=d.ser;lastC=ci}
+  cdots.forEach((b,j)=>b.style.width=clamp(cp*3-j)*100+'%');
+  const cr=$('#coll').getBoundingClientRect();W2.style.transform=`rotate(${(cr.top/innerHeight)*-8}deg)`;
+  setHands(W2);
+  requestAnimationFrame(raf);
+}
+requestAnimationFrame(raf);
+</script>
+</body>
+</html>
