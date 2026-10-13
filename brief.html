@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Strawberry Creator Brief</title>
+<meta name="description" content="What Strawberry is, the story to tell, what to film and how to show it working.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f5f2ec;--ink:#1c1a18;--m:#78716a;--line:#e2dcd2;--card:#fffdf9;--red:#e5484d;--soft:#3d3833;--soft2:#4a443e;--warnbg:#fbeeee;--warnline:#f2d1d1;--warnink:#7a2f31}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#171513;--ink:#f1ede6;--m:#a39b92;--line:#34302b;--card:#211e1b;--soft:#d9d2c8;--soft2:#c9c1b6;--warnbg:#3a2123;--warnline:#5a2f32;--warnink:#f2c4c6}}
+:root[data-theme="dark"]{--bg:#171513;--ink:#f1ede6;--m:#a39b92;--line:#34302b;--card:#211e1b;--soft:#d9d2c8;--soft2:#c9c1b6;--warnbg:#3a2123;--warnline:#5a2f32;--warnink:#f2c4c6}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:"Inter Tight",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.mono{font-family:"JetBrains Mono",monospace;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--m)}
+.wrap{max-width:980px;margin:0 auto;padding:0 32px}
+nav{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;gap:22px;height:58px;max-width:1320px;overflow-x:auto;white-space:nowrap}
+.brand{display:flex;align-items:center;gap:10px;font-weight:600}
+.brand i{width:22px;height:22px;border-radius:7px;background:linear-gradient(135deg,#ff6b6b,#e5484d);display:inline-block;flex:none}
+nav a{text-decoration:none;font-size:14px;color:var(--m)}nav a:hover{color:var(--ink)}
+nav .sp{flex:1}
+.hero{padding:80px 0 40px}
+.hero h1{font-family:"Instrument Serif",serif;font-weight:400;font-size:88px;line-height:.95;letter-spacing:-.03em}
+.hero h1 em{color:var(--m)}
+.hero p{font-size:20px;line-height:1.55;margin-top:24px;color:var(--soft)}
+section{padding:56px 0 8px;border-top:1px solid var(--line);margin-top:36px}
+h2{font-family:"Instrument Serif",serif;font-weight:400;font-size:54px;line-height:1;letter-spacing:-.02em;margin-bottom:18px}
+h3{font-size:20px;font-weight:600;letter-spacing:-.01em;margin:26px 0 8px}
+p,li{font-size:17px;line-height:1.65;color:var(--soft)}
+p+p{margin-top:14px}
+ul,ol{padding-left:22px}li{margin:6px 0}
+.story p{font-size:21px;line-height:1.55;color:var(--ink)}
+.story p+p{margin-top:18px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:22px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px 24px}
+.card h3{margin:0 0 6px;display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.card h3 .mono{font-size:10.5px;white-space:nowrap}
+.card p,.card li{font-size:15.5px;line-height:1.55}
+.card .lbl{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--m);margin:12px 0 4px}
+.hook{border-left:3px solid var(--red);padding:4px 0 4px 16px;margin:14px 0}
+.hook b{display:block;font-size:17px;color:var(--ink)}
+.hook span{font-size:15.5px;color:var(--soft2);line-height:1.55}
+.warn{font-size:15px;line-height:1.55;background:var(--warnbg);border:1px solid var(--warnline);border-radius:12px;padding:14px 16px;color:var(--warnink);margin-top:18px}
+.faq details{border-top:1px solid var(--line)}
+.faq summary{cursor:pointer;list-style:none;padding:16px 0;font-weight:600;font-size:17px;display:flex;justify-content:space-between;gap:16px}
+.faq summary::after{content:"+";font-weight:400;font-size:22px;line-height:1}.faq details[open] summary::after{content:"–"}
+.faq details p{padding-bottom:16px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+footer{padding:50px 0 80px;color:var(--m);font-size:13.5px;border-top:1px solid var(--line);margin-top:56px;line-height:1.6}
+@media(max-width:800px){.wrap{padding:0 16px}.hero h1{font-size:52px}h2{font-size:40px}.grid,.two{grid-template-columns:1fr}.story p{font-size:19px}}
+</style></head><body>
+<nav><div class="wrap"><span class="brand"><i></i>Creator Brief</span><span class="sp"></span><a href="#story">The story</a><a href="#ideas">What to film</a><a href="#hooks">Hooks</a><a href="#show">Show it working</a><a href="#faq">Questions</a><a href="./">Creator pack</a></div></nav>
+
+<div class="wrap">
+<header class="hero">
+  <p class="mono">Strawberry creator brief · one brief for every creator</p>
+  <h1>Show people they're not behind. <em>Show them it working.</em></h1>
+  <p>This page has the story behind Strawberry, ideas you can actually film, and how to make the product look as good on screen as it is. Everything here is a starting point. Your voice and your format are why we picked you, so keep them.</p>
+</header>
+
+<section id="story" class="story">
+  <h2>The story, in plain words</h2>
+  <p>AI agents can do crazy things now. They can work through your inbox, follow up with leads, research a topic and turn it into a doc, build a deck. But most people still feel behind. That's not on them.</p>
+  <p>Most AI tools are built for people who already know how they work. You open a new tab, you re-explain your whole situation, you copy things back and forth, and you still end up doing the actual work yourself.</p>
+  <p>Strawberry meets people where they already work: the browser, the most used and most intuitive interface there is. The agents live on your computer and work in the tabs and tools you already use, one click away, with all your context. If you can use a browser, you can use AI agents.</p>
+  <p>We're not replacing people. We're taking away the work that makes us feel like robots.</p>
+  <p>Strawberry is built in Stockholm and backed with $6M from EQT and General Catalyst, plus the founders of Lovable, Supabase and Hugging Face.</p>
+
+  <h3>Saying it right</h3>
+  <ul>
+    <li>Call it an <b>AI agent platform</b>, or just "Strawberry". Lead with what the agent did for you.</li>
+    <li>Its edge in one line: it's right where you work, one click away, with your tabs, accounts and context. No new tab where you explain everything again.</li>
+    <li>Words we don't use: "AI browser", "AI employees", "early access".</li>
+    <li>No numbers about the company (users, sign-ups, revenue), no launch dates, no speed or benchmark claims. Show what happened on your screen instead.</li>
+    <li>Only claim what you saw it do. If something took two tries, that's fine to show. Honest beats perfect.</li>
+  </ul>
+</section>
+
+<section id="ideas">
+  <h2>What to film</h2>
+  <p>Pick a real task from your own life or job, the kind people hate doing. The best videos show one task done end to end in real tabs, and a finished thing on screen early. These are ideas, not scripts: change the task to fit your audience.</p>
+  <div class="grid">
+    <div class="card"><h3>Inbox triage<span class="mono">Gmail / Outlook</span></h3>
+      <p>Ask Strawberry to go through your inbox: sort what matters, draft replies to the ones that need you, and list what can wait.</p>
+      <p class="lbl">On screen</p><p>The messy inbox, the request in plain words, the agent opening emails in your real mail tab, then the short list and the drafted replies.</p></div>
+    <div class="card"><h3>Sales follow-ups<span class="mono">CRM, LinkedIn, email</span></h3>
+      <p>Have it read your last conversations with a few leads and write a personal follow-up for each, sent only after you say yes.</p>
+      <p class="lbl">On screen</p><p>The lead list, the agent reading each thread, a draft that references something real, you saying "send it", the sent message.</p></div>
+    <div class="card"><h3>Recruiting outreach<span class="mono">LinkedIn, sheets</span></h3>
+      <p>Give it a role. It finds candidates who fit, puts them in a sheet with why each one fits, and drafts a first message for each.</p>
+      <p class="lbl">On screen</p><p>The job description, the sheet filling up row by row, one drafted message read out loud.</p></div>
+    <div class="card"><h3>Research to a doc<span class="mono">web + docs</span></h3>
+      <p>Ask a real question (a trip, a purchase, a competitor, a topic for school or work). It reads the sources and writes a clean doc with links.</p>
+      <p class="lbl">On screen</p><p>The question, tabs opening as it researches, then scroll the finished doc. Open one source to show it's real.</p></div>
+    <div class="card"><h3>Meeting notes to action items<span class="mono">notes, calendar, email</span></h3>
+      <p>Hand it the notes or transcript from a call. It pulls out who does what by when, drafts the follow-up email and puts the next meeting in the calendar.</p>
+      <p class="lbl">On screen</p><p>The wall of notes, then the clean action list, the follow-up draft and the calendar invite.</p></div>
+    <div class="card"><h3>A routine that runs every morning<span class="mono">routines</span></h3>
+      <p>Set up something that runs on its own every weekday: a morning brief from your inbox and calendar, a news digest for your niche, a check on your leads.</p>
+      <p class="lbl">On screen</p><p>You saying "do this every weekday at 8", then the next morning: the brief already waiting. "I woke up and this was done" is the moment.</p></div>
+    <div class="card"><h3>Slides in your brand<span class="mono">decks</span></h3>
+      <p>Give it your logo, colours or website, and a topic. It builds a deck that looks like yours, then you click through it.</p>
+      <p class="lbl">On screen</p><p>The brand input, a few seconds of it working (cut the wait), then three or four finished slides.</p></div>
+    <div class="card"><h3>A companion that knows how you work<span class="mono">companions</span></h3>
+      <p>Create a named agent with a job (a study coach, a content assistant, a sales helper). It remembers what you told it last time.</p>
+      <p class="lbl">On screen</p><p>Creating it in one prompt, giving it a task, then a day later it remembering yesterday without you explaining again.</p></div>
+    <div class="card"><h3>"Comment a boring task"<span class="mono">series</span></h3>
+      <p>Ask your viewers for the most boring task from their job, then make each answer its own video, done live by the agent.</p>
+      <p class="lbl">On screen</p><p>The comment on screen, the task in real tabs, the finished result. Every reply is the next episode.</p></div>
+    <div class="card"><h3>"I gave an agent my job for a day"<span class="mono">series</span></h3>
+      <p>Your real job, or a job your audience has (recruiter, realtor, student, shop owner). What it did well, and honestly what it got wrong.</p>
+      <p class="lbl">On screen</p><p>A quick montage of tasks across your real tools, then the scorecard.</p></div>
+  </div>
+  <p style="margin-top:22px">Want ready-made visuals or prompts to start from? The <a href="./">creator pack</a> has websites, decks, a morning brief, a sales dashboard and an outreach tracker, each with the exact prompt we used.</p>
+</section>
+
+<section id="hooks">
+  <h2>Hook directions</h2>
+  <p>What has worked best for Strawberry so far: a topic people can't resist first, Strawberry makes a finished thing, and you show that finished thing within the first 5 to 8 seconds, not at the end. Numbered series bring people back. These are directions, so put them in your own words.</p>
+  <div class="hook"><b>The curiosity series</b><span>A topic your audience can't scroll past, "part 1, 2, 3...", where the agent builds the plan or guide and you flash it early.</span></div>
+  <div class="hook"><b>Your tabs did your work</b><span>Start on a screen full of open tabs, then the agent that lives in them does the task across those same tabs.</span></div>
+  <div class="hook"><b>The honest day-in-the-job test</b><span>"I let an AI agent run my job for a day." Say what went right and what went wrong. Honesty is the hook.</span></div>
+  <div class="hook"><b>Result first</b><span>Open on the finished thing (the doc, the sent emails, the deck), then show how it got made.</span></div>
+  <div class="hook"><b>Stop re-explaining yourself</b><span>The pain of opening a new chat and typing out your whole situation again, against an agent that already has your context.</span></div>
+  <div class="hook"><b>An agent that already knows you</b><span>A companion that remembers how you work, shown remembering.</span></div>
+  <div class="hook"><b>The comment loop</b><span>Viewers suggest the task, you film the agent doing it. Endless episodes.</span></div>
+</section>
+
+<section id="show">
+  <h2>How to show it working</h2>
+  <div class="two">
+    <div>
+      <h3>Record the screen, don't film it</h3>
+      <ul>
+        <li>Use a real screen recording (on a Mac: Cmd + Shift + 5). Filming a monitor with your phone makes text unreadable, and viewers scroll past.</li>
+        <li>Zoom the browser in (Cmd and +) so text reads on a phone. Close other tabs, turn on Do Not Disturb.</li>
+        <li>Want your face in it? Film yourself separately and put it in the corner or cut between you and the screen.</li>
+        <li>Vertical 9:16, burned-in captions, clear audio. Many people watch muted.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Make it believable</h3>
+      <ul>
+        <li>Show the agent doing the task in real tabs: your real mail, your real sheet, a real site. That's the whole point of Strawberry.</li>
+        <li>Before and after: the messy starting point, then the finished result. The result is the story.</li>
+        <li>Cut the waiting. If you speed something up, say so on screen.</li>
+        <li>For "it actually sent it" moments, keep one continuous take from request to result.</li>
+        <li>Blur real names, emails and anything private. Use a test inbox or fictional data if you need to.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="warn">The most common miss: Strawberry only shows up in the last few seconds, or sits there like a prop. Let it do something real, early.</div>
+  <p style="margin-top:18px">Call to action: point people to <b>strawberrybrowser.com</b>, or your own tracked link if we gave you one. It goes in your bio and caption.</p>
+</section>
+
+<section id="faq" class="faq">
+  <h2>Questions creators ask</h2>
+  <details><summary>What is Strawberry, in one sentence?</summary><p>An AI agent platform: agents that live on your computer and do real work in the browser and tools you already use, one click away with all your context.</p></details>
+  <details><summary>How is it different from ChatGPT or Claude?</summary><p>ChatGPT and Claude are great to talk to, but you open a new tab, explain everything, and then do the work yourself. Strawberry works right where you already are, in your tabs and accounts, and does the task: it reads the thread, writes the email, fills the sheet, builds the deck.</p></details>
+  <details><summary>And from personal agents you text, like Grokbot?</summary><p>Those are chats, like texting a friend, and they run on a computer somewhere else that doesn't know your context. Strawberry is built for work: you work alongside it, like a coworker, on your own computer with your own tools.</p></details>
+  <details><summary>Do I need to code?</summary><p>No. You type what you want in plain words, the same way you'd ask a person. If you can use a browser, you can use it.</p></details>
+  <details><summary>What do I click first?</summary><p>Download Strawberry at strawberrybrowser.com and sign in. Connect the tools your task needs (Settings, then Integrations: Gmail, Calendar, Slack and so on). Then open a new chat, describe the task in plain words and press Enter. Try one real task off camera first so you know how it behaves.</p></details>
+  <details><summary>Which plan do I need?</summary><p>Start on the free plan; it's enough to try it and film your first video. Don't buy anything for this. If you run out while filming, tell us in your email thread and we'll sort it out.</p></details>
+  <details><summary>Is it a browser?</summary><p>It looks like one, because the browser is where people already work, and that's what makes it easy. But what you're showing is the agents: what they do for you.</p></details>
+  <details><summary>Do I have to follow one of these ideas?</summary><p>No. Make the video you'd make anyway, in your own style, with Strawberry doing something real in it. The ideas are here so you're never stuck.</p></details>
+  <details><summary>What about pay, tracked links and submitting?</summary><p>That's all in your email thread with Laurits and on strawberrybrowser.com/creators. This page is only about the content.</p></details>
+</section>
+
+<footer>Questions? Reply in your email thread with Laurits. Ready-made assets and prompts: <a href="./">Strawberry creator pack</a>.</footer>
+</div>
+</body></html>

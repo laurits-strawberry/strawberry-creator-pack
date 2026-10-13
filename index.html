@@ -67,17 +67,17 @@ footer{padding:60px 0 80px;color:var(--m);font-size:13px;border-top:1px solid va
 #vhot{position:absolute;top:0;right:0;width:120px;height:90px;z-index:1}#viewer.show #vx,#vhot:hover+#vx,#vx:hover{opacity:1}#vx:hover{background:rgba(20,18,16,.85)}
 @media(max-width:900px){.hero h1{font-size:64px}.g2,.g3,.steps3,.gcols{grid-template-columns:1fr}.sh{display:block}.sh h2{font-size:44px}}
 </style></head><body>
-<nav><div class="wrap"><span class="brand"><i></i>Creator Pack v2</span><span class="sp"></span><a href="#websites">Websites</a><a href="#decks">Decks</a><a href="#business">Business</a><a href="#film">How to film</a><a href="#bonus">Bonus</a></div></nav>
+<nav><div class="wrap"><span class="brand"><i></i>Creator Pack v2</span><span class="sp"></span><a href="brief.html"><b>The brief</b></a><a href="#websites">Websites</a><a href="#decks">Decks</a><a href="#business">Business</a><a href="#film">How to film</a><a href="#bonus">Bonus</a></div></nav>
 
 <div class="wrap">
 <header class="hero">
-  <p class="mono">Strawberry × LaunchPoint · Updated 27 September 2026</p>
+  <p class="mono">Strawberry creator pack · Updated 13 October 2026 · Start with <a href="brief.html">the brief</a></p>
   <h1>Everything here was made by Strawberry. <em>Here's how to make it yourself.</em></h1>
   <p>Open any piece right here. Scroll the websites, click through the decks. Under each one: the exact prompt we used and three simple steps. No experience needed.</p>
   <div class="steps3">
     <div><span class="mono">Step 1</span><b>Get Strawberry</b><span>Download it free at strawberrybrowser.com and sign in.</span></div>
     <div><span class="mono">Step 2</span><b>Paste the prompt</b><span>Open a new chat, copy a prompt from this page and press Enter.</span></div>
-    <div><span class="mono">Step 3</span><b>Film it working</b><span>Phone on a stand, pointed at the laptop. Record while it builds, then show the result.</span></div>
+    <div><span class="mono">Step 3</span><b>Record it working</b><span>Screen-record while it works, then show the result. What to make and how: <a href="brief.html">the brief</a>.</span></div>
   </div>
 </header>
 
@@ -192,7 +192,7 @@ const G=[
   p:'Open my LinkedIn conversation with [NAME]. Read our last messages and draft one short, friendly follow-up about [WHAT YOU WANT TO SAY]. Show me the draft first. Only send it after I say yes. Then add [NAME] to my outreach tracker as "messaged".',
   warn:'One person, one message, with their permission to show it. Don\'t mass-message strangers: LinkedIn can restrict accounts that send lots of automated messages.',tips:['Keep it in one take from "paste" to "sent". That\'s what makes it believable.','Blur the other person\'s face and name unless they said yes.']}];
 document.getElementById('guides').innerHTML=G.map(g=>`<div class="guide"><h3>${g.t}</h3><p class="lead">${g.lead}</p><div class="gcols"><div class="big"><h4>Steps</h4><ol>${g.steps.map(s=>`<li>${s}</li>`).join('')}</ol>${g.warn?`<div class="warn">${g.warn}</div>`:''}</div><div><h4>Prompt</h4><div class="prompt"><button class="copy">Copy</button>${esc(g.p)}</div><h4 style="margin-top:14px">Filming tips</h4><ol class="how">${g.tips.map(s=>`<li>${s}</li>`).join('')}</ol></div></div></div>`).join('')+
-`<div class="guide"><h3>Filming checklist</h3><div class="gcols"><ol class="how"><li>Phone on a stand or a stack of books, pointed at the laptop.</li><li>Laptop brightness all the way up. Room lights down a bit, to avoid glare.</li><li>Zoom the browser in (Cmd and +) so text is readable on a phone screen.</li><li>Close other tabs and turn on Do Not Disturb.</li></ol><ol class="how" start="5"><li>For "live" moments, record one continuous take.</li><li>Show the result at the end, always. The result is the story.</li><li>Websites: scroll slowly. Decks: press the right arrow and wait for the animation to finish.</li><li>Keep takes short. 20 to 40 seconds per moment is plenty.</li></ol></div></div>`;
+`<div class="guide"><h3>Filming checklist</h3><div class="gcols"><ol class="how"><li>Screen-record (on a Mac: Cmd + Shift + 5). Don't film the monitor with your phone: the text gets unreadable.</li><li>Want your face in it? Film yourself separately and cut between you and the screen.</li><li>Zoom the browser in (Cmd and +) so text is readable on a phone screen.</li><li>Close other tabs and turn on Do Not Disturb.</li></ol><ol class="how" start="5"><li>For "live" moments, record one continuous take.</li><li>Show the result at the end, always. The result is the story.</li><li>Websites: scroll slowly. Decks: press the right arrow and wait for the animation to finish.</li><li>Keep takes short. 20 to 40 seconds per moment is plenty.</li></ol></div></div>`;
 // copy
 document.addEventListener('click',e=>{const c=e.target.closest('.copy');if(c){const txt=c.parentElement.textContent.replace(/^Copy/,'').trim();navigator.clipboard.writeText(txt).then(()=>{c.textContent='Copied';setTimeout(()=>c.textContent='Copy',1500)});return}
  const o=e.target.closest('[data-open]');if(o)openV(o.dataset.open)});
